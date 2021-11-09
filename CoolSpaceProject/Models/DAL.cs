@@ -72,7 +72,6 @@ namespace CoolSpaceProject.Models
             };
             DB.Insert(theapod);
             return theapod;
-
         }
         //? save a list of apods into favapod db//prob not...
 

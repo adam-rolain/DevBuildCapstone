@@ -32,5 +32,12 @@ namespace CoolSpaceProject.Controllers
         {
             return await DAL.GetAPODbyRange(startDate, endDate);
         }
+
+        // https://localhost:44304/api/favoriteApod?date=2021-10-10
+        [HttpPost("/api/favoriteApod")]
+        public async Task<FavoriteApod> SaveFavoriteApod(string date)
+        {
+            return DAL.SaveFavAPOD(date);
+        }
     }
 }
