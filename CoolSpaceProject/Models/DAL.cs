@@ -51,12 +51,12 @@ namespace CoolSpaceProject.Models
         }
 
         //get all apod in date range
-
-        public static async Task <ApodList> GetAPODbyRange(string start_date, string end_date)
+        // Got rid of IEnumerable and changed to list
+        public static async Task<List<Apod>> GetAPODbyRange(string start_date, string end_date)
         {
             var response = await GetHttpClient().GetAsync($"/planetary/apod?api_key=AhkPJXB4fyYZfBLWbVJBv5HxNDZVUUb5ceAaC88r&start_date={start_date}&end_date={end_date}&thumbs=true");
-            ApodList apodresponse = await response.Content.ReadAsAsync<ApodList>();
-            return  apodresponse;
+            List<Apod> apodresponse = await response.Content.ReadAsAsync<List<Apod>>();
+            return apodresponse;
         }
         //CREATE
         //save one apod into the favapod db 
