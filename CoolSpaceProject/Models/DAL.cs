@@ -73,13 +73,15 @@ namespace CoolSpaceProject.Models
             DB.Insert(theapod);
             return theapod;
         }
-        //? save a list of apods into favapod db//prob not...
+     
 
         //DELETE
         //delete one apod from favapod db
 
-        //UPDATE
-        //could be update email/pw/spelling of name
+        public static bool DeleteFavApod(int id)
+        {
+            return DB.Delete<FavoriteApod>(new FavoriteApod() { id = id });
+        }
 
     }
 }
