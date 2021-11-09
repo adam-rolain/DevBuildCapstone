@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31409.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoolSpaceProject", "CoolSpaceProject\CoolSpaceProject.csproj", "{D27D1065-A998-45F4-ADCF-98A7CAFB7E06}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2F757ACE-6A1B-43CA-901B-6A8911ED39DB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8078CD1D-3FDA-4574-AA47-3C61D8258B50}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 	EndProjectSection

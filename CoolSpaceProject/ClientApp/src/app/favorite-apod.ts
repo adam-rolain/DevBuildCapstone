@@ -1,5 +1,5 @@
 export interface FavoriteApod {
     id: number,
-    apodId: number,
+    date: string,
     userId: number
 }
