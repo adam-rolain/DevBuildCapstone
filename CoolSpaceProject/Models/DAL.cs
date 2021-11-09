@@ -18,6 +18,8 @@ namespace CoolSpaceProject.Models
         //figure out what from a user perspective we need.
 
         private static HttpClient client = null;
+        public static int CurrentUserId = 1;
+
         private static HttpClient GetHttpClient()
         {
             // Building a **SINGLETON** object of type HttpClient - avoids a lot extra traffic
@@ -61,6 +63,17 @@ namespace CoolSpaceProject.Models
         //CREATE
         //save one apod into the favapod db 
 
+        public static  FavoriteApod SaveFavAPOD(string date)
+        {
+            FavoriteApod theapod = new FavoriteApod()
+            {
+                date = date,
+                userId = DAL.CurrentUserId
+            };
+            DB.Insert(theapod);
+            return theapod;
+
+        }
         //? save a list of apods into favapod db//prob not...
 
         //DELETE
