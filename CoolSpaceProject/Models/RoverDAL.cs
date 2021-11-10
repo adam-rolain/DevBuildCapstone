@@ -10,8 +10,6 @@ namespace CoolSpaceProject.Models
 {
     public class RoverDAL
     {
-        public static MySqlConnection DB;
-
         //do a new http client in each method
         //add base address in methods
         //figure out what from a user perspective we need.
@@ -35,9 +33,12 @@ namespace CoolSpaceProject.Models
         //read
         //get all photos from one rover by earth_date with default camera
 
-        public static async Task<Photos> GetAllRoverPhotosbyEarthDate(string earth_date)
+        public static async Task<Photos> GetAllRoverPhotosbyEarthDate(string earth_date, string roverName)
         {
-            var response = await GetHttpClient().GetAsync($"/mars-photos/api/v1/rovers/spirit/photos?earth_date={earth_date}&page?1&api_key=AhkPJXB4fyYZfBLWbVJBv5HxNDZVUUb5ceAaC88r&photos");
+            // Curiosity: 2012-08-05 -> Present
+            // Spirit: 2004-01-04 -> 2010-03-22
+            // Opportunity: 2004-01-01 -> 2018-06-01
+            var response = await GetHttpClient().GetAsync($"/mars-photos/api/v1/rovers/{roverName}/photos?earth_date={earth_date}&page=1&api_key=AhkPJXB4fyYZfBLWbVJBv5HxNDZVUUb5ceAaC88r");
             Photos roverresponse = await response.Content.ReadAsAsync<Photos>();
             return roverresponse;
         }
@@ -45,14 +46,16 @@ namespace CoolSpaceProject.Models
 
         //save one photo favorite roverId (save photo to favrover db)
 
-        public static  FavoriteRover SaveFavoriteRoverPhoto(int id)
+        public static  FavoriteRover SaveFavoriteRoverPhoto(string earthDate, int page, int arrayIndex)
         {
             FavoriteRover therover = new FavoriteRover()
             {
-                id = id,
-                userId = DAL.CurrentUserId
+                userId = DAL.CurrentUserId,
+                earthDate = earthDate,
+                page = page,
+                arrayIndex = arrayIndex
             };
-            DB.Insert(therover);
+            DAL.DB.Insert(therover);
 
             return therover ;
         }

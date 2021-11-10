@@ -12,10 +12,7 @@ namespace CoolSpaceProject.Models
         [Key]
         public int id { get; set; }
         public string date { get; set; }
-
         public int userId { get; set; }
-       
-
     }
 
 
