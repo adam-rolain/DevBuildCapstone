@@ -7,6 +7,7 @@ CREATE TABLE user (
 	lastName VARCHAR(50),
 	email VARCHAR(80),
 	phone VARCHAR(10),
+    userName VARCHAR(50),
 	password VARCHAR(50),
 	PRIMARY KEY(id)
 );
@@ -73,9 +74,9 @@ FOREIGN KEY (roverId) REFERENCES rover(id)
 );
 */
 
-insert into user (firstName, lastName, email, phone, password) values ('Adam', 'Rolain', 'AdamRolain@RocketMortage.com', '8888888888', 'dog1234');
-insert into user (firstName, lastName, email, phone, password) values ('Jessica', 'Miller-Nims', 'JessicaMiller-Nims@RocketMortage.com', '9999999999', 'dog1234');
-insert into user (firstName, lastName, email, phone, password) values ('Todd', 'Fecto', 'ToddFecto@RocketMortage.com', '1111111111', 'dog1234');
+insert into user (firstName, lastName, email, phone, userName, password) values ('Adam', 'Rolain', 'AdamRolain@RocketMortage.com', '8888888888', 'ARolain', 'dog1234');
+insert into user (firstName, lastName, email, phone, userName, password) values ('Jessica', 'Miller-Nims', 'JessicaMiller-Nims@RocketMortage.com', '9999999999', 'JMiller-Nims', 'dog1234');
+insert into user (firstName, lastName, email, phone, userName, password) values ('Todd', 'Fecto', 'ToddFecto@RocketMortage.com', '1111111111', 'TFecto', 'dog1234');
 insert into favoriteApod (date, userId) values ('2021-11-09', 1);
 
 insert into apod (date, explanation, hdurl, media_type, service_version, title, url) values ('2021-11-09','Why would you want to fake a universe? For one reason -- to better understand our real universe. Many astronomical projects seeking to learn properties of our universe now start with a robotic telescope taking sequential images of the night sky. Next, sophisticated computer algorithms crunch these digital images to find stars and galaxies and measure their properties. To calibrate these algorithms, it is useful to test them on fake images from a fake universe to see if the algorithms can correctly deduce purposely imprinted properties. The featured mosaic of fake images was created to specifically mimic the images that have appeared on NASA\'s Astronomy Picture of the Day (APOD). Only one image of the 225 images is real -- can you find it? The accomplished deceptors have made available individual fake APOD images that can be displayed by accessing their ThisIsNotAnAPOD webpage or Twitter feed. More useful for calibrating and understanding our distant universe, however, are fake galaxies -- a sampling of which can be seen at their ThisIsNotAGalaxy webpage. Astrophysicists: Browse 2,600+ codes in the Astrophysics Source Code Library', 'https://apod.nasa.gov/apod/image/2111/AIapods01_Geach_3840.jpg', 'image', 'v1', 'All of These Space Images are Fake Except One', 'https://apod.nasa.gov/apod/image/2111/AIapods01_Geach_960.jpg');

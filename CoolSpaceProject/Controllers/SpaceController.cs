@@ -60,7 +60,19 @@ namespace CoolSpaceProject.Controllers
         {
             return RoverDAL.SaveFavoriteRoverPhoto(earthDate, page, index);
         }
+
+        // https://localhost:44304/api/user/login?userName=TFecto&password=dog1234
+        [HttpGet("/api/user/login")]
+        public bool LoginUser(string userName, string password)
+        {
+            return UserDAL.LoginUser(userName, password);
+        }
+
+        // https://localhost:44304/api/user/new
+        [HttpPost("/api/user/new")]
+        public User CreateNewUser([FromBody] User newUser)
+        {
+            return UserDAL.CreateNewUser(newUser);
+        }
     }
 }
-
-// api/marsrover?earth_date=2021-11-08&page=1 index

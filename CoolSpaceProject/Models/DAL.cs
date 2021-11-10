@@ -18,7 +18,6 @@ namespace CoolSpaceProject.Models
         //figure out what from a user perspective we need.
 
         private static HttpClient client = null;
-        public static int CurrentUserId = 1;
 
         private static HttpClient GetHttpClient()
         {
@@ -68,7 +67,7 @@ namespace CoolSpaceProject.Models
             FavoriteApod theapod = new FavoriteApod()
             {
                 date = date,
-                userId = DAL.CurrentUserId
+                userId = UserDAL.CurrentUserId
             };
             DB.Insert(theapod);
             return theapod;
