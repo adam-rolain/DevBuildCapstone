@@ -50,7 +50,7 @@ namespace CoolSpaceProject.Models
         {
             FavoriteRover therover = new FavoriteRover()
             {
-                userId = DAL.CurrentUserId,
+                userId = UserDAL.CurrentUserId,
                 earthDate = earthDate,
                 page = page,
                 arrayIndex = arrayIndex
