@@ -1,2 +1,5 @@
 <h1>Hello Did we get this far yet?</h1>
-{{apod.date}}
+<ng-container *ngIf="testApod">
+    {{ testApod.date }}
+</ng-container>
+<button (click)="getApod()">Get Apod</button>

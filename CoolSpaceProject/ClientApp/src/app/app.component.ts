@@ -5,20 +5,22 @@ import { CoolSpaceService } from './cool-space.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [ CoolSpaceService ]
 })
 export class AppComponent {
   title = 'ClientApp';
-  apod: APOD = {
-    id: 0,
-    date: "2021-11-04",
-    explanation: "",
-    hdurl: "",
-    media_type: "string",
-    service_version: "string",
-    title: "string",
-    url: "string",
-  };
+  testApod?: APOD;
 
-  constructor(private spaceservice: CoolSpaceService) {this.apod = spaceservice.displayApod()}
+  constructor(private spaceservice: CoolSpaceService) {}
+
+  getApod() {
+    //console.log(`Current Date: ${this.testApod.date}`);
+    this.spaceservice.displayApod(
+      (result: any) => {
+        this.testApod = result;
+      }
+    );
+    //console.log(`New Date: ${this.testApod.date}`);
+  }
 }
