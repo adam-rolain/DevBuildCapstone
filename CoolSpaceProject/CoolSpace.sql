@@ -19,10 +19,15 @@ CREATE TABLE favoriteApod (
 	FOREIGN KEY (userId) REFERENCES user(id)
 );
 
+drop table favoriteRover;
 CREATE TABLE favoriteRover (
-	id INT NOT NULL,
+	id INT NOT NULL AUTO_INCREMENT,
     userId INT NOT NULL,
-    PRIMARY KEY(id)
+    earthDate VARCHAR(11),
+    page int,
+    arrayIndex INT NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY (userId) REFERENCES user(id)	
 );
 
 /*

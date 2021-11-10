@@ -47,14 +47,20 @@ namespace CoolSpaceProject.Controllers
             return DAL.DeleteFavApod(favoriteapodid);
         }
 
-        // https://localhost:44304/api/marsrover?earthDate=2021-11-08
-        //[HttpGet("/api/marsrover")]
-        //public async Task<Photos> GetRoverPhotosByEarthDate(string earthDate)
-        //{
-        //    // return ApodDAL.GetRoverPhotosByEarthDate(earthDate);
-        //}
+        // https://localhost:44304/api/marsrover?earthDate=2021-11-08&roverName=curiosity
+        [HttpGet("/api/marsrover")]
+        public async Task<Photos> GetRoverPhotosByEarthDate(string earthDate, string roverName)
+        {
+            return await RoverDAL.GetAllRoverPhotosbyEarthDate(earthDate, roverName);
+        }
 
-        // https://localhost:44304/api/favoriteRover?id=893076
-        
+        // https://localhost:44304/api/favoriteRover?
+        [HttpPost("/api/favoriteRover")]
+        public FavoriteRover SaveFavoriteRover(string earthDate, int page, int index)
+        {
+            return RoverDAL.SaveFavoriteRoverPhoto(earthDate, page, index);
+        }
     }
 }
+
+// api/marsrover?earth_date=2021-11-08&page=1 index
