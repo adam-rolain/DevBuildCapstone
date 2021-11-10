@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { APOD } from '../apod';
 import { CoolSpaceService } from '../cool-space.service';
 
@@ -8,20 +8,21 @@ import { CoolSpaceService } from '../cool-space.service';
   styleUrls: ['./apod.component.css']
 })
 export class APODComponent implements OnInit {
-  apod?: APOD;
+  @Input() apod?: APOD;
   youtubeId?: string;
 
   constructor(private spaceService: CoolSpaceService) { }
 
   ngOnInit(): void {
-    this.getApod();
   }
 
   getApod() {
     this.spaceService.displayApod(
       (result: any) => {
         this.apod = result;
-        this.youtubeId = this.getYoutubeId(result.url);
+        if (result.media_type === 'video') {
+          this.youtubeId = this.getYoutubeId(result.url);
+        }
       }
     );
     
@@ -38,4 +39,15 @@ export class APODComponent implements OnInit {
     }
   }
 
+  getApodByDate() {
+    this.spaceService.displayApodByDate(
+      (result: any) => {
+        this.apod = result;
+        if (result.media_type === 'video') {
+          this.youtubeId = this.getYoutubeId(result.url);
+        }
+      },
+      '2021-11-09'
+    );
+  }
 }

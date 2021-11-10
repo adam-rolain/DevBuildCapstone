@@ -9,5 +9,14 @@
             [width]="500">
         </youtube-player>
     </ng-container>
+    <ng-container *ngIf="apod.media_type === 'image'">
+        <img src="{{ apod.url }}" />
+    </ng-container>
+    <div>
+        <P>
+            Explanation: {{apod.explanation}}
+        </P>
+    </div>
 </ng-container>
-<button (click)="getApod()">Get Apod</button>
+<button (click)="getApod()">Get Currrent Apod</button><br />
+<button (click)="getApodByDate()">Get Apod By Date</button>
