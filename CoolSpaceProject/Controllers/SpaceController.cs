@@ -28,7 +28,7 @@ namespace CoolSpaceProject.Controllers
 
         // https://localhost:44304/api/apod/daterange?startDate=2020-10-10&endDate=2020-10-13
         [HttpGet("/api/apod/daterange")]
-        public async Task<List<Apod>> GetAPODByDate(string startDate, string endDate)
+        public async Task<List<Apod>> GetAPODByDateRange(string startDate, string endDate)
         {
             return await DAL.GetAPODbyRange(startDate, endDate);
         }
