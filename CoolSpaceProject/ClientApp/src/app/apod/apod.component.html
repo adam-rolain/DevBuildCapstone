@@ -1,0 +1,13 @@
+<h3>Astronomy Photo of the Day</h3>
+<ng-container *ngIf="apod">
+    <h6>{{ apod.title }}</h6>
+    <ng-container *ngIf="apod.media_type === 'video'">
+        <youtube-player 
+            videoId="{{ youtubeId }}" 
+            suggestedQuality="highres" 
+            [height]="250" 
+            [width]="500">
+        </youtube-player>
+    </ng-container>
+</ng-container>
+<button (click)="getApod()">Get Apod</button>
