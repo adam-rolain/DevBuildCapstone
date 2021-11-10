@@ -40,10 +40,15 @@ namespace CoolSpaceProject.Controllers
             return DAL.SaveFavAPOD(date);
         }
 
+        // https://localhost:44304/api/favoriteApod/delete/1
         [HttpDelete("/api/favoriteApod/delete/{favoriteapodid}")]
         public bool DeleteFavApod(int favoriteapodid)
         {
             return DAL.DeleteFavApod(favoriteapodid);
         }
+
+        // https://localhost:44304/api/marsrover?earthDate=2021-11-08
+
+        // https://localhost:44304/api/favoriteRover?id=893076
     }
 }
