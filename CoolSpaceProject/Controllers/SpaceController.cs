@@ -35,7 +35,7 @@ namespace CoolSpaceProject.Controllers
 
         // https://localhost:44304/api/favoriteApod?date=2021-10-10
         [HttpPost("/api/favoriteApod")]
-        public  FavoriteApod SaveFavoriteApod(string date)
+        public FavoriteApod SaveFavoriteApod(string date)
         {
             return DAL.SaveFavAPOD(date);
         }
@@ -48,7 +48,13 @@ namespace CoolSpaceProject.Controllers
         }
 
         // https://localhost:44304/api/marsrover?earthDate=2021-11-08
+        //[HttpGet("/api/marsrover")]
+        //public async Task<Photos> GetRoverPhotosByEarthDate(string earthDate)
+        //{
+        //    // return ApodDAL.GetRoverPhotosByEarthDate(earthDate);
+        //}
 
         // https://localhost:44304/api/favoriteRover?id=893076
+        
     }
 }
