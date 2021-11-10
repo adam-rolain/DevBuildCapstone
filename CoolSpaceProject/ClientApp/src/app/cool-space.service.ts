@@ -18,4 +18,20 @@ export class CoolSpaceService {
 			}
 		);
   }
+
+  displayApodByDate(cb: any, date: string) {
+    this.http.get<APOD>(`/api/apod/${date}`).subscribe(
+			result => {
+				cb(result);
+			}
+		);
+  }
+
+  displayApodByDateRange(cb: any, start_date: string, end_date: string) {
+    this.http.get<APOD>(`/api/apod/daterange?startDate=${start_date}&endDate=${end_date}`).subscribe(
+			result => {
+				cb(result);
+			}
+		);
+  }
 }
