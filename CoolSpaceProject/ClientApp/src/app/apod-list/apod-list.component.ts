@@ -15,7 +15,7 @@ export class ApodListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getApodByDateRange();
+    
   }
 
   getApodByDateRange() {

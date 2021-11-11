@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { APODComponent } from './apod/apod.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { ApodListComponent } from './apod-list/apod-list.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ApodListComponent } from './apod-list/apod-list.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    YouTubePlayerModule
+    YouTubePlayerModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
