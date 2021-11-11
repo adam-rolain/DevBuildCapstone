@@ -5,6 +5,7 @@
 <p>Start of the APOD List</p>
 <app-apod-list></app-apod-list>
 <h3>User Login Component</h3>
-<app-user-login></app-user-login>
+<app-user-login (currentUserIdEvent)="getCurrentUserId()"></app-user-login>
+<p>Currrent User Id: {{ currentUserId }}</p>
 <h3>User Form Component</h3>
 <app-user-form></app-user-form>
