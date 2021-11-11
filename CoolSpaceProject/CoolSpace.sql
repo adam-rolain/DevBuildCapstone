@@ -83,3 +83,5 @@ insert into apod (date, explanation, hdurl, media_type, service_version, title, 
 insert into camera (id, name, rover_id, full_name) values (20, 'FHAZ', 5, 'Front Hazard Avoidance Camera');
 insert into rover (id, name, landing_date, launch_date, status) values (5, 'Curiosity', '2012-08-06', '2011-11-26', 'active');
 insert into marsRover (sol, cameraId, img_src, earth_date, roverId) values (1000, 20, 'http://mars.jpl.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01000/opgs/edr/fcam/FLB_486265257EDR_F0481570FHAZ00323M_.JPG', '2015-05-30', 5);
+
+SELECT * FROM user;
