@@ -13,8 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserFormComponent } from './user-form/user-form.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MarsRoverComponent } from './mars-rover/mars-rover.component';
-import { PhotosComponent } from './photos/photos.component';
-import { CameraComponent } from './camera/camera.component';
+
 
 
 @NgModule({
@@ -26,8 +25,7 @@ import { CameraComponent } from './camera/camera.component';
     UserFormComponent,
     NavBarComponent,
     MarsRoverComponent,
-    PhotosComponent,
-    CameraComponent
+   
   ],
   imports: [
     BrowserModule,
