@@ -3,6 +3,7 @@ import { MarsRover } from '../mars-rover';
 import { Rover } from '../rover';
 import { Camera } from '../camera';
 import { Photos } from '../photos';
+import { MarsRoverService } from '../mars-rover.service';
 
 @Component({
   selector: 'app-mars-rover',
@@ -11,9 +12,11 @@ import { Photos } from '../photos';
 })
 export class MarsRoverComponent implements OnInit {
 
-  constructor() { }
+  constructor(private marsSpaceService: MarsRoverService) { }
 
   ngOnInit(): void {
   }
 
+
+  
 }
