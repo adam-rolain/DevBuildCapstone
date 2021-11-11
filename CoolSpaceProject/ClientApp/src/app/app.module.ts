@@ -12,6 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserFormComponent } from './user-form/user-form.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { MarsRoverComponent } from './mars-rover/mars-rover.component';
+
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     ApodListComponent,
     UserLoginComponent,
     UserFormComponent,
-    NavBarComponent
+    NavBarComponent,
+    MarsRoverComponent,
+   
   ],
   imports: [
     BrowserModule,
