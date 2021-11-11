@@ -1,7 +1,5 @@
-<p>apod-list works!</p>
-
 <ng-container *ngFor="let apod of ApodList">
-    <app-apod [apod]="apod" [ListDate]="apod.date" [isTodaysApod]="false"></app-apod>
+    <app-apod [apod]="apod" [apodType]="'fromList'"></app-apod>
 </ng-container>
 <div>
     Start Date: YYYY-MM-DD <input type="text" [(ngModel)]="newStartDate"/><br/>

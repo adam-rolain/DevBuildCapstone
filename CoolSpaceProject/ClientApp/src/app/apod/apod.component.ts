@@ -9,26 +9,25 @@ import { CoolSpaceService } from '../cool-space.service';
 })
 export class APODComponent implements OnInit {
   @Input() apod?: APOD;
-  @Input() isTodaysApod: boolean = true;
+  @Input() apodType: string = 'today';
   youtubeId?: string;
-  newDate: string ='';
-  @Input() ListDate?: string;
+  specificDate: string ='';
 
   constructor(private spaceService: CoolSpaceService) { }
 
   ngOnInit(): void {
-    if (this.isTodaysApod) {
+    if (this.apodType === 'today') {
       this.getApod();
     }
-   if(this.newDate){
+    else if (this.apodType === 'individualDate') {
       this.getApodByDate();
     }
-   else{
-     if(this.apod){
-     this.newDate= this.apod.date;
-    this.getApodByDate();
+    else if (this.apodType === 'fromList') {
+      if (this.apod) {
+        this.specificDate = this.apod.date;
+        this.getApodByDate();
+      }
     }
-      };
   }
 
   getApod() {
@@ -66,7 +65,7 @@ export class APODComponent implements OnInit {
           this.youtubeId = this.getYoutubeId(result.url);
         }
       },
-      this.newDate
+      this.specificDate
     );
   }
 }
