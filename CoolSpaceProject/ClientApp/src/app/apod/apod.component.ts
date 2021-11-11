@@ -11,12 +11,16 @@ export class APODComponent implements OnInit {
   @Input() apod?: APOD;
   @Input() isTodaysApod: boolean = true;
   youtubeId?: string;
+  newDate: string ='';
 
   constructor(private spaceService: CoolSpaceService) { }
 
   ngOnInit(): void {
     if (this.isTodaysApod) {
       this.getApod();
+    }
+   if(this.newDate){
+      this.getApodByDate();
     }
     
   }
@@ -47,12 +51,14 @@ export class APODComponent implements OnInit {
   getApodByDate() {
     this.spaceService.displayApodByDate(
       (result: any) => {
-        this.apod = result;
+       
+        this.apod = result; 
+          
         if (result.media_type === 'video') {
           this.youtubeId = this.getYoutubeId(result.url);
         }
       },
-      '2021-11-09'
+      this.newDate
     );
   }
 }
