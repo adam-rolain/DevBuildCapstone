@@ -81,5 +81,18 @@ namespace CoolSpaceProject.Controllers
         {
             return UserDAL.CreateNewUser(newUser);
         }
+
+        // https://localhost:44304/api/user/currentUser
+        [HttpGet("/api/user/currentUser/{id}")]
+        public User GetCurrentUserById(int id)
+        {
+            return UserDAL.GetCurrentUser(id);
+        }
+
+        [HttpPut("/api/user/update")]
+        public bool UpdateUser([FromBody] User user)
+        {
+            return UserDAL.UpdateUser(user);
+        }
     }
 }

@@ -1,27 +1,58 @@
-<form>
-    <div class="form-group">
-      <label for="firstName">First Name</label>
-      <input type="text" class="form-control" id="firstName" placeholder="First Name" [formControl]="firstName">
-    </div>
-    <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input type="text" class="form-control" id="lastName" placeholder="Last Name" [formControl]="lastName">
-    </div>
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="Email" [formControl]="email">
-    </div>
-    <div class="form-group">
-        <label for="phone">Phone</label>
-        <input type="phone" class="form-control" id="phone" placeholder="Phone" [formControl]="phone">
-    </div>
-    <div class="form-group">
-        <label for="userName">UserName</label>
-        <input type="userName" class="form-control" id="userName" placeholder="UserName" [formControl]="userName">
-    </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Password" [formControl]="password">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+<ng-container *ngIf="isNewUser">
+    <form [formGroup]="newUserForm" (ngSubmit)="submitNewUser()">
+        <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" id="firstName" placeholder="First Name" formControlName="firstName">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Last Name" formControlName="lastName">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email">
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="phone" class="form-control" id="phone" placeholder="Phone" formControlName="phone">
+        </div>
+        <div class="form-group">
+            <label for="userName">UserName</label>
+            <input type="userName" class="form-control" id="userName" placeholder="UserName" formControlName="userName">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!newUserForm.valid">Submit</button>
+    </form>
+</ng-container>
+<ng-container *ngIf="!isNewUser">
+    <form [formGroup]="updateForm" (ngSubmit)="updateUser()">
+        <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" id="firstName" placeholder="First Name" formControlName="firstName" value="{{ updateForm.value.firstName }}">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Last Name" formControlName="lastName" value="{{ updateForm.value.lastName }}">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email" value="{{ updateForm.value.email }}">
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="phone" class="form-control" id="phone" placeholder="Phone" formControlName="phone" value="{{ updateForm.value.phone }}">
+        </div>
+        <div class="form-group">
+            <label for="userName">UserName</label>
+            <input type="userName" class="form-control" id="userName" placeholder="UserName" formControlName="userName" value="{{ updateForm.value.userName }}">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password" value="{{ updateForm.value.password }}">
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!updateForm.valid">Submit</button>
+    </form>
+</ng-container>
