@@ -12,6 +12,7 @@ export class APODComponent implements OnInit {
   @Input() isTodaysApod: boolean = true;
   youtubeId?: string;
   newDate: string ='';
+  @Input() ListDate?: string;
 
   constructor(private spaceService: CoolSpaceService) { }
 
@@ -22,7 +23,12 @@ export class APODComponent implements OnInit {
    if(this.newDate){
       this.getApodByDate();
     }
-    
+   else{
+     if(this.apod){
+     this.newDate= this.apod.date;
+    this.getApodByDate();
+    }
+      };
   }
 
   getApod() {
@@ -34,8 +40,10 @@ export class APODComponent implements OnInit {
         }
       }
     );
-    
+  
   }
+
+ 
 
   getYoutubeId(url: string) {
     if (this.apod) {
