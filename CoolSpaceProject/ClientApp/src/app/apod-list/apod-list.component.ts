@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { APOD } from '../apod';
 import { CoolSpaceService } from '../cool-space.service';
 
@@ -8,8 +8,12 @@ import { CoolSpaceService } from '../cool-space.service';
   styleUrls: ['./apod-list.component.css']
 })
 export class ApodListComponent implements OnInit {
-
+ 
   ApodList?: APOD[];
+  youtubeId?: string;
+  newStartDate: string ='';
+  newEndDate: string ='';
+
 
   constructor(private spaceService: CoolSpaceService) { }
 
@@ -17,13 +21,15 @@ export class ApodListComponent implements OnInit {
 
     
   }
+ 
 
   getApodByDateRange() {
     this.spaceService.displayApodByDateRange(
       (result: any) => {
         this.ApodList = result;
+       
       },
-      '2021-11-01', '2021-11-10'
+      this.newStartDate, this.newEndDate
     );
   }
 

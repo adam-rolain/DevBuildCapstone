@@ -1,6 +1,11 @@
 <p>apod-list works!</p>
 
 <ng-container *ngFor="let apod of ApodList">
-    <app-apod [apod]="apod" [isTodaysApod]="false"></app-apod>
+    <app-apod [apod]="apod" [ListDate]="apod.date" [isTodaysApod]="false"></app-apod>
 </ng-container>
-<button (click)="getApodByDateRange()">Get Apods by Date Range</button>
+<div>
+    Start Date: YYYY-MM-DD <input type="text" [(ngModel)]="newStartDate"/><br/>
+    End Date: YYYY-MM-DD <input type="text" [(ngModel)]="newEndDate"/><br/>
+    <button (click)="getApodByDateRange()">Get Apods by Date Range</button>
+ </div>
+
