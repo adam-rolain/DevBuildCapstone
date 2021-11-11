@@ -7,18 +7,29 @@ import { APODComponent } from './apod/apod.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { ApodListComponent } from './apod-list/apod-list.component';
 import { FormsModule } from '@angular/forms';
+import { UserLoginComponent } from './user-login/user-login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserFormComponent } from './user-form/user-form.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     APODComponent,
-    ApodListComponent
+    ApodListComponent,
+    UserLoginComponent,
+    UserFormComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     YouTubePlayerModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
