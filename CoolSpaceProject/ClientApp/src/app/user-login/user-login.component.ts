@@ -1,6 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { User } from '../user';
 import { UserService } from '../user.service';
 
 @Component({
@@ -9,13 +8,11 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-login.component.css']
 })
 export class UserLoginComponent implements OnInit {
-  userForm = new FormGroup({
+  loginForm = new FormGroup({
     userName: new FormControl(''),
     password: new FormControl('')
   })
   isValidLogin: boolean = false;
-  currentUserId: number = -1;
-  @Output() currentUserIdEvent: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(private userService: UserService) { }
 
@@ -26,16 +23,14 @@ export class UserLoginComponent implements OnInit {
     this.userService.loginUser(
       (result: any) => {
         this.isValidLogin = result;
-        if (this.isValidLogin) {
-          this.retrieveCurrentUserIdInAppComponent();
-        }
+        this.userService.getCurrentUserId(
+          (result: any) => {
+            this.userService.setCurrentUserId(result);
+          }
+        )
       },
-      this.userForm.value.userName,
-      this.userForm.value.password
+      this.loginForm.value.userName,
+      this.loginForm.value.password
     );
-  }
-
-  retrieveCurrentUserIdInAppComponent() {
-    this.currentUserIdEvent.emit();
   }
 }

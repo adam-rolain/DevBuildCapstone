@@ -50,5 +50,15 @@ namespace CoolSpaceProject.Models
             DAL.DB.Insert(newUser);
             return newUser;
         }
+
+        public static User GetCurrentUser(int id)
+        {
+            return DAL.DB.Get<User>(id);
+        }
+
+        public static bool UpdateUser(User user)
+        {
+            return DAL.DB.Update<User>(user);
+        }
     }
 }

@@ -9,7 +9,7 @@ import { UserService } from './user.service';
 })
 export class AppComponent {
   title = 'ClientApp';
-  currentUserId: number = -1;
+  currentUserId: number = this.userService.currentUserId;
 
   constructor(private modalService: NgbModal, private userService: UserService) {}
 
@@ -17,12 +17,7 @@ export class AppComponent {
     this.modalService.open(modal);
   }
 
-  getCurrentUserId() {
-    this.userService.getCurrentUserId(
-      (result: any) => {
-        console.log(`Result: ${result}`)
-        this.currentUserId = result;
-      }
-    );
+  refreshCurrentUserId() {
+    this.currentUserId = this.userService.currentUserId;
   }
 }

@@ -9,7 +9,10 @@
 <p>Start of the APOD List</p>
 <app-apod-list></app-apod-list>
 <h3>User Login Component</h3>
-<app-user-login (currentUserIdEvent)="getCurrentUserId()"></app-user-login>
-<p>Currrent User Id: {{ currentUserId }}</p>
+<app-user-login></app-user-login>
 <h3>User Form Component</h3>
-<app-user-form></app-user-form>
+<app-user-form [isNewUser]="true"></app-user-form>
+<h3>Update User Form Component</h3>
+<app-user-form [isNewUser]="false"></app-user-form>
+Current User Id: {{ currentUserId }}
+<button (click)="refreshCurrentUserId()">Refresh</button>
