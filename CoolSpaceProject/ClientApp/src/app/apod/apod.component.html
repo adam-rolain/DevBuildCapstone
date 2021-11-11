@@ -1,6 +1,7 @@
 <h3>Astronomy Photo of the Day:</h3>
 <ng-container *ngIf="apod">
     <h6>{{ apod.title }}</h6>
+    <p>{{ apod.date }}</p>
     <ng-container *ngIf="apod.media_type === 'video'">
         <youtube-player 
             videoId="{{ youtubeId }}" 
@@ -19,7 +20,7 @@
     </div>
 </ng-container>
 <div>
-   Date: YYYY-MM-DD <input type="text" [(ngModel)]="newDate"/><br/>
+   Date: YYYY-MM-DD <input type="text" [(ngModel)]="specificDate"/><br/>
     <button (click)="getApodByDate()">Get Apod By Date</button>
 </div>
 
