@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+
 import { APOD } from '../apod';
 import { CoolSpaceService } from '../cool-space.service';
 
@@ -12,6 +13,7 @@ export class APODComponent implements OnInit {
   @Input() apodType: string = 'today';
   youtubeId?: string;
   specificDate: string ='';
+  favoriteDate: string= '';
 
   constructor(private spaceService: CoolSpaceService) { }
 
@@ -58,14 +60,22 @@ export class APODComponent implements OnInit {
   getApodByDate() {
     this.spaceService.displayApodByDate(
       (result: any) => {
-       
-        this.apod = result; 
-          
-        if (result.media_type === 'video') {
+               this.apod = result; 
+              if (result.media_type === 'video') {
           this.youtubeId = this.getYoutubeId(result.url);
         }
       },
       this.specificDate
     );
+  }
+
+  AddFavoriteApod(){
+    this.spaceService.AddApodtoFavoriteList(
+      (result: any) => {
+        this.apod = result;
+      },
+      this.favoriteDate
+    );
+
   }
 }

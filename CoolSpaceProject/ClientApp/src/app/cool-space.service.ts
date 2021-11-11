@@ -34,4 +34,13 @@ export class CoolSpaceService {
 			}
 		);
   }
+  
+  AddApodtoFavoriteList(cb: any, date: string){
+	  this.http.post<APOD>(`/api/favoriteApod`, date).subscribe(
+		  result => {
+			  cb(result);
+		  }
+	  );
+  }
+
 }
