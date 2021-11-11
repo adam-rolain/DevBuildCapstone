@@ -9,11 +9,16 @@ import { CoolSpaceService } from '../cool-space.service';
 })
 export class APODComponent implements OnInit {
   @Input() apod?: APOD;
+  @Input() isTodaysApod: boolean = true;
   youtubeId?: string;
 
   constructor(private spaceService: CoolSpaceService) { }
 
   ngOnInit(): void {
+    if (this.isTodaysApod) {
+      this.getApod();
+    }
+    
   }
 
   getApod() {
