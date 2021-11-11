@@ -1,8 +1,11 @@
+import { Camera } from "./camera";
+import { Rover } from "./rover";
+
 export interface MarsRover {
     id: number,
     sol: number,
-    cameraId: number,
+    camera: Camera,
     img_src: string,
     earth_date: string,
-    roverId: number
+    rover: Rover
 }
