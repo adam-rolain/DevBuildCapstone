@@ -3,9 +3,7 @@
 <ng-container *ngIf="apodType === 'today'">
     <h3>Astronomy Picture of the Day: </h3>
 </ng-container>
-<ng-container *ngIf="apodType === 'fromList'">
-<h3></h3>
-</ng-container>
+
     <h5>Title: {{ apod.title }}</h5>
     <h6>Date: {{ apod.date }}</h6>
     <ng-container *ngIf="apod.media_type === 'video'">
