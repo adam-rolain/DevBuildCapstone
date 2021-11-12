@@ -34,6 +34,7 @@ namespace CoolSpaceProject.Models
 
         //READ
         //get and display the pic of the day--get one/current
+        //return the id also ---so we can call it to delete later. 
 
         public static async Task<Apod> GetAPOD()
         {
@@ -94,7 +95,7 @@ namespace CoolSpaceProject.Models
 
         //DELETE
         //delete one apod from favapod db
-
+       
         public static bool DeleteFavApod(int id)
         {
             return DB.Delete<FavoriteApod>(new FavoriteApod() { id = id });

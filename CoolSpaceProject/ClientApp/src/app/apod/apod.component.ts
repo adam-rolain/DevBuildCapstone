@@ -86,6 +86,15 @@ export class APODComponent implements OnInit {
       },
       { date: this.apod.date }
     );
+        this.isFavorite = true;
+  }
 
+  DeleteFromFavApod(){
+    this.spaceService.DeleteApod(
+      (result: any) => {
+        this.isFavorite = !result;
+      },
+      this.apod.id
+    );
   }
 }

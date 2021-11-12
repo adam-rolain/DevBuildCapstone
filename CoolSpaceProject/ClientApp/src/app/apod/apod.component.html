@@ -30,8 +30,10 @@
 </div>
 </ng-container>
 <div>
-    <button (click)="AddFavoriteApod()">Add to Favorites</button>
+    <button *ngIf="!isFavorite" (click)="AddFavoriteApod()">Add to Favorites</button>
+    <button *ngIf="isFavorite" (click)="DeleteFromFavApod()">Delete</button>
 </div>
+
 
 
 

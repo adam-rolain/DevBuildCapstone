@@ -33,6 +33,8 @@ namespace CoolSpaceProject.Controllers
             return await DAL.GetAPODbyRange(startDate, endDate);
         }
 
+        //return the id also ---so we can call it to delete later. 
+
         // https://localhost:44304/api/favoriteApod?date=2021-10-10
         [HttpPost("/api/favoriteApod")]
         public bool SaveFavoriteApod([FromBody] SaveFavoriteApod date)
@@ -46,6 +48,7 @@ namespace CoolSpaceProject.Controllers
             return await DAL.GetFavoriteApodList();
         }
 
+        
         // https://localhost:44304/api/favoriteApod/delete/1
         [HttpDelete("/api/favoriteApod/delete/{favoriteapodid}")]
         public bool DeleteFavApod(int favoriteapodid)
