@@ -1,4 +1,6 @@
+<h3>Favorite APODS List:</h3>
 <ng-container *ngFor="let apod of ApodList">
+    
     <app-apod [apod]="apod" [apodType]="'fromList'"></app-apod>
 </ng-container>
 {{ isFavoriteList }}
