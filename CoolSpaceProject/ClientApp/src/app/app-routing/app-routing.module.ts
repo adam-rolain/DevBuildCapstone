@@ -13,10 +13,10 @@ const routes: Routes = [
   // { path: 'home', component: AppComponent },
   { path: 'apod', component: APODComponent },
   { path: 'apodList', component: ApodListComponent },
-  { path: 'favoriteApodList', component: ApodListComponent, data: { isFavoriteList: true } },
+  { path: 'favoriteApodList', component: ApodListComponent },
   { path: 'userSignUp', component: UserFormComponent },
   { path: 'updateUser', component: UserFormComponent },
-  { path: 'login', component: UserLoginComponent },
+  { path: 'login',  component: UserLoginComponent },
   { path: 'marsRover', component: MarsRoverComponent }
 ];
 

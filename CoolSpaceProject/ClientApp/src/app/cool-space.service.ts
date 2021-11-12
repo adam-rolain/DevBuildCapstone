@@ -44,4 +44,12 @@ export class CoolSpaceService {
 	  );
   }
 
+  GetFavoriteApodList(cb: any){
+	this.http.get<APOD[]>(`/api/favoriteApodList`).subscribe(
+		result => {
+			cb(result);
+		}
+	);
+}
+
 }

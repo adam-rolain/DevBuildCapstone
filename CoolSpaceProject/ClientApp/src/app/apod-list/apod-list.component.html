@@ -1,6 +1,7 @@
 <ng-container *ngFor="let apod of ApodList">
     <app-apod [apod]="apod" [apodType]="'fromList'"></app-apod>
 </ng-container>
+{{ isFavoriteList }}
 <ng-container *ngIf="!isFavoriteList">
     <div>
         Start Date: YYYY-MM-DD <input type="text" [(ngModel)]="newStartDate"/><br/>
