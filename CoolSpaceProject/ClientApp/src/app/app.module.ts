@@ -10,11 +10,13 @@ import { FormsModule } from '@angular/forms';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { UserFormComponent } from './user-form/user-form.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MarsRoverComponent } from './mars-rover/mars-rover.component';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { NewUserFormComponent } from './new-user-form/new-user-form.component';
+import { UpdateUserFormComponent } from './update-user-form/update-user-form.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -24,9 +26,11 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     APODComponent,
     ApodListComponent,
     UserLoginComponent,
-    UserFormComponent,
     NavBarComponent,
     MarsRoverComponent,
+    NewUserFormComponent,
+    UpdateUserFormComponent,
+    HomeComponent,
    
   ],
   imports: [

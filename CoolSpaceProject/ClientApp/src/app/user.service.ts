@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  public currentUserId: number = -1;
+  public currentUserId: BehaviorSubject<number> = new BehaviorSubject(-1);
 
   constructor(private http: HttpClient) { }
 
@@ -27,7 +28,7 @@ export class UserService {
   }
 
   setCurrentUserId(newId: number) {
-    this.currentUserId = newId;
+    this.currentUserId.next(newId);
   }
 
   createNewUser(cb: any, newUser: User) {
@@ -47,7 +48,7 @@ export class UserService {
   }
 
   updateUser(cb: any, user: User) {
-    this.http.put<User>('/api/user/update', user).subscribe(
+    this.http.put<boolean>('/api/user/update', user).subscribe(
 			result => {
 				cb(result);
 			}
