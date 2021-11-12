@@ -9,7 +9,7 @@ import { UserService } from './user.service';
 })
 export class AppComponent {
   title = 'ClientApp';
-  currentUserId: number = this.userService.currentUserId;
+  //currentUserId: number = this.userService.currentUserId;
 
   constructor(private modalService: NgbModal, private userService: UserService) {}
 
@@ -17,7 +17,9 @@ export class AppComponent {
     this.modalService.open(modal);
   }
 
-  refreshCurrentUserId() {
-    this.currentUserId = this.userService.currentUserId;
-  }
+  /*refreshCurrentUserId() {
+    this.userService.currentUserId.subscribe((value: number) => {
+      this.currentUserId = value;
+    })
+  }*/
 }

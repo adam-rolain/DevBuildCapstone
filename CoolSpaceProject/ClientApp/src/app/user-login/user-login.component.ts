@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class UserLoginComponent implements OnInit {
   })
   isValidLogin: boolean = false;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -31,6 +32,7 @@ export class UserLoginComponent implements OnInit {
       },
       this.loginForm.value.userName,
       this.loginForm.value.password
-    );
+    );  
+    this.router.navigate(['/home']);
   }
 }
