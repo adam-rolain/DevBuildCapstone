@@ -1,9 +1,12 @@
 <ng-container *ngFor="let apod of ApodList">
     <app-apod [apod]="apod" [apodType]="'fromList'"></app-apod>
 </ng-container>
-<div>
-    Start Date: YYYY-MM-DD <input type="text" [(ngModel)]="newStartDate"/><br/>
-    End Date: YYYY-MM-DD <input type="text" [(ngModel)]="newEndDate"/><br/>
-    <button (click)="getApodByDateRange()">Get Apods by Date Range</button>
- </div>
+<ng-container *ngIf="!isFavoriteList">
+    <div>
+        Start Date: YYYY-MM-DD <input type="text" [(ngModel)]="newStartDate"/><br/>
+        End Date: YYYY-MM-DD <input type="text" [(ngModel)]="newEndDate"/><br/>
+        <button (click)="getApodByDateRange()">Get Apods by Date Range</button>
+     </div>
+</ng-container>
+
 
