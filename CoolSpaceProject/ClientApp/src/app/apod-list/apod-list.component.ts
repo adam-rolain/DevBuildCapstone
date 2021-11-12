@@ -13,13 +13,15 @@ export class ApodListComponent implements OnInit {
   youtubeId?: string;
   newStartDate: string ='';
   newEndDate: string ='';
+  isFavoriteList: boolean = false;
 
 
   constructor(private spaceService: CoolSpaceService) { }
 
   ngOnInit(): void {
-
-    
+    if (this.isFavoriteList) {
+      this.getFavoriteApods();
+    }    
   }
  
 
@@ -31,6 +33,10 @@ export class ApodListComponent implements OnInit {
       },
       this.newStartDate, this.newEndDate
     );
+  }
+
+  getFavoriteApods() {
+
   }
 
 }

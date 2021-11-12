@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { APOD } from './apod';
+import { SaveFavoriteApod } from './save-favorite-apod';
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +36,8 @@ export class CoolSpaceService {
 		);
   }
   
-  AddApodtoFavoriteList(cb: any, date: string){
-	  this.http.post<APOD>(`/api/favoriteApod`, date).subscribe(
+  AddApodtoFavoriteList(cb: any, saveFavoriteApod: SaveFavoriteApod){
+	  this.http.post<boolean>(`/api/favoriteApod`, saveFavoriteApod).subscribe(
 		  result => {
 			  cb(result);
 		  }

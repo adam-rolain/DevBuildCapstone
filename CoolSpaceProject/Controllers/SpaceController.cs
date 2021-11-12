@@ -35,9 +35,15 @@ namespace CoolSpaceProject.Controllers
 
         // https://localhost:44304/api/favoriteApod?date=2021-10-10
         [HttpPost("/api/favoriteApod")]
-        public FavoriteApod SaveFavoriteApod(string date)
+        public bool SaveFavoriteApod([FromBody] SaveFavoriteApod date)
         {
             return DAL.SaveFavAPOD(date);
+        }
+
+        [HttpGet("/api/favoriteApodList")]
+        public async Task<List<Apod>> GetFavoriteApodList()
+        {
+            return await DAL.GetFavoriteApodList();
         }
 
         // https://localhost:44304/api/favoriteApod/delete/1

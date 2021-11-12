@@ -59,18 +59,36 @@ namespace CoolSpaceProject.Models
             List<Apod> apodresponse = await response.Content.ReadAsAsync<List<Apod>>();
             return apodresponse;
         }
+
+        public static async Task<List<Apod>> GetFavoriteApodList()
+        {
+            List<FavoriteApod> favoriteApods = DB.Query<FavoriteApod>("SELECT * FROM favoriteApod WHERE userId = @userId", new { userId = UserDAL.CurrentUserId }).ToList();
+            List<Apod> apods = new List<Apod>();
+            foreach (FavoriteApod favorite in favoriteApods)
+            {
+                apods.Add(await GetAPODbyDate(favorite.date));
+            }
+            return apods;
+        }
         //CREATE
         //save one apod into the favapod db 
 
-        public static  FavoriteApod SaveFavAPOD(string date)
+        public static bool SaveFavAPOD(SaveFavoriteApod date)
         {
             FavoriteApod theapod = new FavoriteApod()
             {
-                date = date,
+                date = date.date,
                 userId = UserDAL.CurrentUserId
             };
-            DB.Insert(theapod);
-            return theapod;
+            long responseFromDB = DB.Insert(theapod);
+            if (responseFromDB < 1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
      
 

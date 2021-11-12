@@ -1,18 +1,8 @@
 <app-nav-bar></app-nav-bar>
-<p>Click on one of the options below for some space fun:</p>
-
-<app-apod [apodType]="'today'"></app-apod>
-<br /> <br />
+<router-outlet></router-outlet>
 
 
 
-<p>Start of the APOD List</p>
-<app-apod-list></app-apod-list>
-<h3>User Login Component</h3>
-<app-user-login></app-user-login>
-<h3>User Form Component</h3>
-<app-user-form [isNewUser]="true"></app-user-form>
-<h3>Update User Form Component</h3>
-<app-user-form [isNewUser]="false"></app-user-form>
+
 Current User Id: {{ currentUserId }}
 <button (click)="refreshCurrentUserId()">Refresh</button>

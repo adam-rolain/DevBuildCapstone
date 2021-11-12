@@ -9,11 +9,21 @@ import { CoolSpaceService } from '../cool-space.service';
   styleUrls: ['./apod.component.css']
 })
 export class APODComponent implements OnInit {
-  @Input() apod?: APOD;
+  @Input() apod: APOD = {
+    id: 0,
+    date: '',
+    explanation: '',
+    hdurl: '',
+    media_type: '',
+    service_version: '',
+    title: '',
+    url: ''
+  };
   @Input() apodType: string = 'today';
   youtubeId?: string;
   specificDate: string ='';
   favoriteDate: string= '';
+  isFavorite: boolean = false;
 
   constructor(private spaceService: CoolSpaceService) { }
 
@@ -72,9 +82,9 @@ export class APODComponent implements OnInit {
   AddFavoriteApod(){
     this.spaceService.AddApodtoFavoriteList(
       (result: any) => {
-        this.apod = result;
+        this.isFavorite = result;
       },
-      this.favoriteDate
+      { date: this.apod.date }
     );
 
   }

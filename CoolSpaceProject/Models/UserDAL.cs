@@ -11,7 +11,7 @@ namespace CoolSpaceProject.Models
     public class UserDAL
     {
         private static HttpClient client = null;
-        public static int CurrentUserId = 1;
+        public static int CurrentUserId = -1;
 
         private static HttpClient GetHttpClient()
         {
