@@ -20,6 +20,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" routerLink="/apodList" routerLinkActive="active">APOD List</a></li>
+              <li><a class="dropdown-item" routerLink="/favoriteApodList" routerLinkActive="active" [queryParams]="{ isFavoriteList: true }">Favorite APOD List</a></li>
               <li><a class="dropdown-item" routerLink="/userSignUp" routerLinkActive="active">Sign Up</a></li>
               <li><a class="dropdown-item" routerLink="/login" routerLinkActive="active">Login</a></li>
               <li><hr class="dropdown-divider"></li>
