@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { APOD } from './apod';
+import { FavoriteApod } from './favorite-apod';
 import { SaveFavoriteApod } from './save-favorite-apod';
 
 @Injectable({
@@ -52,4 +53,11 @@ export class CoolSpaceService {
 	);
 }
 
+	DeleteApod(cb: any, favoriteapodid: number){
+		this.http.delete<boolean>(`/api/favoriteApod/delete/${favoriteapodid}`).subscribe(
+			result =>{
+				cb(result);
+			}
+		)
+	}
 }
