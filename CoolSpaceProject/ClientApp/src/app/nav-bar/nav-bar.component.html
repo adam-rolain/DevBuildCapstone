@@ -18,26 +18,33 @@
             <a class="nav-link" routerLink="/apodList" routerLinkActive="active">APOD Gallery</a>
           </li>
           <li class="nav-item">
+            <a *ngIf="userId > -1" class="nav-link" routerLink="/favoriteApodList" routerLinkActive="active">Favorite APOD List</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" routerLink="/marsRover" routerLinkActive="active" >Mars Rover</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/marsRover" routerLinkActive="active" ></a>
+          </li>
+        </ul>
+        <ul class="navbar-nav mb-2 mb-lg-0 loginIcon">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="bi bi-person-fill"></i>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li *ngIf="isLoggedIn"><a class="dropdown-item" routerLink="/favoriteApodList" routerLinkActive="active" [queryParams]="{ isFavoriteList: true }">Favorite APOD List</a></li>
-              <li *ngIf="!isLoggedIn"><a class="dropdown-item" routerLink="/userSignUp" routerLinkActive="active">Sign Up</a></li>
-              <li *ngIf="!isLoggedIn"><a class="dropdown-item" routerLink="/login" routerLinkActive="active">Login</a></li>
-              <ng-container *ngIf="isLoggedIn">
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" routerLink="/updateUser" routerLinkActive="active">Update User</a></li>
-              </ng-container> 
+              <li *ngIf="userId === -1"><a class="dropdown-item" routerLink="/userSignUp" routerLinkActive="active">Sign Up</a></li>
+              <li *ngIf="userId === -1"><a class="dropdown-item" routerLink="/login" routerLinkActive="active">Login</a></li>
+              <ng-container *ngIf="userId > -1">
+                <li><a class="dropdown-item" routerLink="/updateUser" routerLinkActive="active">Account Information</a></li>
+                <li class="dropdown-divider"></li>
+                <li><a class="dropdown-item" routerLink="/home" (click)="logout()">Logout</a></li>
+              </ng-container>
             </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/marsRover" routerLinkActive="active" >{{ isLoggedIn }}</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
+ 

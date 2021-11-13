@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -19,19 +20,14 @@ export class NewUserFormComponent implements OnInit {
     password: new FormControl('')
   });
   user?: User;
-  currentUserId: number = -1;
 
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    this.userService.currentUserId.subscribe((value: number) => {
-      this.currentUserId = value;
-    })
   }
 
   submitNewUser() {
     this.user = {
-      id: this.currentUserId,
       firstName: this.newUserForm.value.firstName,
       lastName: this.newUserForm.value.lastName,
       email: this.newUserForm.value.email,

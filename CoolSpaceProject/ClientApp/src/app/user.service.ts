@@ -1,15 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  public currentUserId: BehaviorSubject<number> = new BehaviorSubject(-1);
+  private currentUserId: BehaviorSubject<number> = new BehaviorSubject(-1);
 
   constructor(private http: HttpClient) { }
+
+  public getCurrentUserId(): Observable<number> {
+    return this.currentUserId;
+  }
 
   loginUser(cb: any, userName: string, password: string) {
     this.http.get<boolean>(`/api/user/login?userName=${userName}&password=${password}`).subscribe(
@@ -19,7 +23,7 @@ export class UserService {
 		);
   }
 
-  getCurrentUserId(cb: any) {
+  getCurrentUserIdFromUserDAL(cb: any) {
     this.http.get<number>(`/api/user/currentUser`).subscribe(
 			result => {
 				cb(result);
@@ -28,7 +32,9 @@ export class UserService {
   }
 
   setCurrentUserId(newId: number) {
+    console.log(`UserId before login: ${this.currentUserId.value}`)
     this.currentUserId.next(newId);
+    console.log(`UserId after login: ${this.currentUserId.value}`)
   }
 
   createNewUser(cb: any, newUser: User) {
@@ -53,5 +59,13 @@ export class UserService {
 				cb(result);
 			}
 		);
+  }
+
+  logoutUser(cb: any) {
+    this.http.get<boolean>('/api/user/logout').subscribe(
+      result => {
+        cb(result);
+      }
+    )
   }
 }

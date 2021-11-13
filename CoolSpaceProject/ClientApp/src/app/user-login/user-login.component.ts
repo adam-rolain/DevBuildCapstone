@@ -24,7 +24,7 @@ export class UserLoginComponent implements OnInit {
     this.userService.loginUser(
       (result: any) => {
         this.isValidLogin = result;
-        this.userService.getCurrentUserId(
+        this.userService.getCurrentUserIdFromUserDAL(
           (result: any) => {
             this.userService.setCurrentUserId(result);
           }

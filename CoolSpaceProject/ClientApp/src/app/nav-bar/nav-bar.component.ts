@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { UserService } from '../user.service';
 
 @Component({
@@ -7,19 +8,24 @@ import { UserService } from '../user.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-  isLoggedIn: boolean = true;
+  public currentUserId?: Observable<number>;
+  userId: number = -1;
 
   constructor(private userService: UserService) {
-    this.userService.currentUserId.subscribe((value: number) => {
-      if (value === -1) {
-        this.isLoggedIn = false;
-      }
-      this.ngOnInit();
-    })
    }
 
   ngOnInit(): void {
-    
+    this.currentUserId = this.userService.getCurrentUserId();
+
+    this.currentUserId.subscribe((userId: number) => {
+      console.log(`Logging from Nav Bar Component: ${userId}`);
+      this.userId = userId;
+    })
   }
 
+  logout() {
+    this.userService.logoutUser((result: any) => {
+      this.userService.setCurrentUserId(result);
+    });
+  }
 }

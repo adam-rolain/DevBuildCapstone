@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -11,17 +12,20 @@ import { UserService } from '../user.service';
 export class UpdateUserFormComponent implements OnInit {
   user?: User;
   userUpdated: boolean = false;
+  public currentUserId?: Observable<number>;
 
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    this.userService.currentUserId.subscribe((value: number) => {
-      this.userService.getUserInfo(
-        (result: any) => {
-          this.user = result;
-        },
-        value
-      )
+    this.currentUserId = this.userService.getCurrentUserId();
+
+    this.currentUserId.subscribe((userId: number) => {
+      console.log(`Logging change from Update User Form: ${userId}`);
+      this.userService.getUserInfo((result: any) => {
+        this.user = result;
+      },
+      userId
+      );
     })
   }
 
