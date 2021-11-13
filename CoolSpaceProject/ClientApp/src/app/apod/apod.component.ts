@@ -54,8 +54,6 @@ export class APODComponent implements OnInit {
   
   }
 
- 
-
   getYoutubeId(url: string) {
     if (this.apod) {
       let index: number = this.apod.url.indexOf('embed/');

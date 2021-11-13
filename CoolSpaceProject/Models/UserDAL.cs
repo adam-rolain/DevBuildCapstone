@@ -47,7 +47,8 @@ namespace CoolSpaceProject.Models
 
         public static User CreateNewUser(User newUser)
         {
-            DAL.DB.Insert(newUser);
+            newUser.id = Convert.ToInt32(DAL.DB.Insert(newUser));
+            CurrentUserId = newUser.id;
             return newUser;
         }
 
@@ -59,6 +60,12 @@ namespace CoolSpaceProject.Models
         public static bool UpdateUser(User user)
         {
             return DAL.DB.Update<User>(user);
+        }
+
+        public static int LogoutUser()
+        {
+            CurrentUserId = -1;
+            return CurrentUserId;
         }
     }
 }

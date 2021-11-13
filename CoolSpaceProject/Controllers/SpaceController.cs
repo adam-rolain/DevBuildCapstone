@@ -48,7 +48,7 @@ namespace CoolSpaceProject.Controllers
             return await DAL.GetFavoriteApodList();
         }
 
-        
+
         // https://localhost:44304/api/favoriteApod/delete/1
         [HttpDelete("/api/favoriteApod/delete/{favoriteapodid}")]
         public bool DeleteFavApod(int favoriteapodid)
@@ -102,6 +102,12 @@ namespace CoolSpaceProject.Controllers
         public bool UpdateUser([FromBody] User user)
         {
             return UserDAL.UpdateUser(user);
+        }
+
+        [HttpGet("/api/user/logout")]
+        public int LogoutUser()
+        {
+            return UserDAL.LogoutUser();
         }
     }
 }
