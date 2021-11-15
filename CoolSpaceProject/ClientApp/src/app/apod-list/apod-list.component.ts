@@ -41,7 +41,7 @@ export class ApodListComponent implements OnInit {
   getFavoriteApods() {
     this.spaceService.GetFavoriteApodList(
       (result: any) => {
-        this.ApodList = result;
+        this.ApodList = result.reverse();
       },
     );
   }

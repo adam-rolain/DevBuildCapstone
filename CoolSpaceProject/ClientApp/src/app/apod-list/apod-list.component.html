@@ -8,10 +8,21 @@
         <h3>APODS List:</h3> 
     </div>
     </ng-container>
-<ng-container *ngFor="let apod of ApodList">
+
+<ng-container *ngIf="!isFavoriteList">
+    <ng-container *ngFor="let apod of ApodList">
     
-    <app-apod [apod]="apod" [apodType]="'fromList'"></app-apod>
-  
+        <app-apod [apod]="apod" [apodType]="'fromList'"></app-apod>
+      
+    </ng-container>
+</ng-container>
+
+<ng-container *ngIf="isFavoriteList">
+    <ng-container *ngFor="let apod of ApodList">
+    
+        <app-apod [apod]="apod" [apodType]="'fromFavoritesList'"></app-apod>
+      
+    </ng-container>
 </ng-container>
 
 <ng-container *ngIf="!isFavoriteList">
@@ -22,6 +33,3 @@
      </div>
    
 </ng-container>
-
-
-
