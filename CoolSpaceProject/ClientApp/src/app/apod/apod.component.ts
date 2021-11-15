@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { APOD } from '../apod';
 import { CoolSpaceService } from '../cool-space.service';
@@ -25,7 +26,7 @@ export class APODComponent implements OnInit {
   favoriteDate: string= '';
   favoriteId: number = -1;
 
-  constructor(private spaceService: CoolSpaceService) { }
+  constructor(private spaceService: CoolSpaceService, private router: Router) { }
 
   ngOnInit(): void {
     if (this.apodType === 'today') {
@@ -44,6 +45,7 @@ export class APODComponent implements OnInit {
       if (this.apod) {
         this.specificDate = this.apod.date;
         this.getApodByDate();
+        console.log(`Displaying apod from ngOnInit(): ${this.apod.date}`);
       }
     }
   }
@@ -58,7 +60,7 @@ export class APODComponent implements OnInit {
         if (result.media_type === 'video') {
           this.youtubeId = this.getYoutubeId(result.url);
         }
-        this.getFavoriteApodId(this.apod.date);
+        this.getFavoriteApodId();
       }
     );
   }
@@ -81,7 +83,7 @@ export class APODComponent implements OnInit {
               if (result.media_type === 'video') {
           this.youtubeId = this.getYoutubeId(result.url);
         }
-        this.getFavoriteApodId(this.apod.date);
+        this.getFavoriteApodId();
       },
       this.specificDate
     );
@@ -96,7 +98,7 @@ export class APODComponent implements OnInit {
     );
   }
 
-  getFavoriteApodId(date: string) {
+  getFavoriteApodId() {
     this.spaceService.GetFavoriteApodId((result: any) => {
       this.favoriteId = result;
     },
@@ -108,7 +110,7 @@ export class APODComponent implements OnInit {
     this.spaceService.DeleteApod(
       (result: any) => {
         if (result === true) {
-          this.favoriteId = -1
+          this.favoriteId = -1;
         }
       },
       this.favoriteId
