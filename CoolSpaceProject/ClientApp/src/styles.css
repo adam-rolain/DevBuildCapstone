@@ -1,1 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+html{
+    background-image: url('https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/02428/opgs/edr/ncam/NRB_613059797EDR_S0752860NCAM00546M_.JPG');
+    background-size: cover;
+    }
