@@ -38,7 +38,7 @@ export class CoolSpaceService {
   }
   
   AddApodtoFavoriteList(cb: any, saveFavoriteApod: SaveFavoriteApod){
-	  this.http.post<boolean>(`/api/favoriteApod`, saveFavoriteApod).subscribe(
+	  this.http.post<number>(`/api/favoriteApod`, saveFavoriteApod).subscribe(
 		  result => {
 			  cb(result);
 		  }
@@ -52,6 +52,14 @@ export class CoolSpaceService {
 		}
 	);
 }
+
+	GetFavoriteApodId(cb: any, date: string) {
+		this.http.get<number>(`/api/favoriteApodId?date=${date}`).subscribe(
+			result => {
+				cb(result);
+			}
+		)
+	}
 
 	DeleteApod(cb: any, favoriteapodid: number){
 		this.http.delete<boolean>(`/api/favoriteApod/delete/${favoriteapodid}`).subscribe(

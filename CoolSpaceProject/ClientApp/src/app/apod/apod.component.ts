@@ -23,7 +23,7 @@ export class APODComponent implements OnInit {
   youtubeId?: string;
   specificDate: string ='';
   favoriteDate: string= '';
-  isFavorite: boolean = false;
+  favoriteId: number = -1;
 
   constructor(private spaceService: CoolSpaceService) { }
 
@@ -40,18 +40,27 @@ export class APODComponent implements OnInit {
         this.getApodByDate();
       }
     }
+    else if (this.apodType === 'fromFavoritesList') {
+      if (this.apod) {
+        this.specificDate = this.apod.date;
+        this.getApodByDate();
+      }
+    }
   }
 
   getApod() {
     this.spaceService.displayApod(
       (result: any) => {
+        console.log(`Result Date before setting to apod: ${result.date}`);
         this.apod = result;
+        console.log(`Result Date after setting to apod: ${result.date}`);
+        console.log(`Apod Date after being set by result: ${this.apod.date}`);
         if (result.media_type === 'video') {
           this.youtubeId = this.getYoutubeId(result.url);
         }
+        this.getFavoriteApodId(this.apod.date);
       }
     );
-  
   }
 
   getYoutubeId(url: string) {
@@ -72,6 +81,7 @@ export class APODComponent implements OnInit {
               if (result.media_type === 'video') {
           this.youtubeId = this.getYoutubeId(result.url);
         }
+        this.getFavoriteApodId(this.apod.date);
       },
       this.specificDate
     );
@@ -80,19 +90,28 @@ export class APODComponent implements OnInit {
   AddFavoriteApod(){
     this.spaceService.AddApodtoFavoriteList(
       (result: any) => {
-        this.isFavorite = result;
+        this.favoriteId = result;
       },
       { date: this.apod.date }
     );
-        this.isFavorite = true;
+  }
+
+  getFavoriteApodId(date: string) {
+    this.spaceService.GetFavoriteApodId((result: any) => {
+      this.favoriteId = result;
+    },
+    this.apod.date
+    );
   }
 
   DeleteFromFavApod(){
     this.spaceService.DeleteApod(
       (result: any) => {
-        this.isFavorite = !result;
+        if (result === true) {
+          this.favoriteId = -1
+        }
       },
-      this.apod.id
+      this.favoriteId
     );
   }
 }

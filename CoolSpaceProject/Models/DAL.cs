@@ -71,10 +71,27 @@ namespace CoolSpaceProject.Models
             }
             return apods;
         }
+
+        public static int GetFavoriteApodId(string date)
+        {
+            if (UserDAL.CurrentUserId == -1)
+            {
+                return -1;
+            }
+            List<int> favoriteId = DB.Query<int>("SELECT id FROM favoriteApod WHERE userId = @userId AND date = @date", new { userId = UserDAL.CurrentUserId, date = date }).ToList();
+            if (favoriteId.Count > 0)
+            {
+                return favoriteId[0];
+            }
+            else
+            {
+                return -1;
+            }
+        }
         //CREATE
         //save one apod into the favapod db 
 
-        public static bool SaveFavAPOD(SaveFavoriteApod date)
+        public static long SaveFavAPOD(SaveFavoriteApod date)
         {
             FavoriteApod theapod = new FavoriteApod()
             {
@@ -82,13 +99,13 @@ namespace CoolSpaceProject.Models
                 userId = UserDAL.CurrentUserId
             };
             long responseFromDB = DB.Insert(theapod);
-            if (responseFromDB < 1)
+            if (responseFromDB < 0)
             {
-                return false;
+                return -1;
             }
             else
             {
-                return true;
+                return responseFromDB;
             }
         }
      
