@@ -30,7 +30,12 @@
     </div>
     </ng-container>
     <div>
-        <button *ngIf="favoriteId === -1" (click)="AddFavoriteApod()">Add to Favorites</button>
+        <ng-container *ngIf="favoriteId === -1 && userId > 0">
+            <button (click)="AddFavoriteApod()">Add to Favorites</button>
+        </ng-container>
+        <ng-container *ngIf="favoriteId === -1 && userId === -1">
+            <button (click)="RedirectToSignupOrLogin()">Add to Favorites</button>
+        </ng-container>
         <button *ngIf="favoriteId > 0" (click)="DeleteFromFavApod()">Delete</button>
     </div>
 </ng-container>

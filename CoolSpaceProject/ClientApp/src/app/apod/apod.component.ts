@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { APOD } from '../apod';
 import { CoolSpaceService } from '../cool-space.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-apod',
@@ -25,10 +27,19 @@ export class APODComponent implements OnInit {
   specificDate: string ='';
   favoriteDate: string= '';
   favoriteId: number = -1;
+  public currentUserId?: Observable<number>;
+  userId: number = -1;
 
-  constructor(private spaceService: CoolSpaceService, private router: Router) { }
+  constructor(private spaceService: CoolSpaceService, private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
+    this.currentUserId = this.userService.getCurrentUserId();
+
+    this.currentUserId.subscribe((userId: number) => {
+      console.log(`Logging from Apod Component: ${userId}`);
+      this.userId = userId;
+    })
+
     if (this.apodType === 'today') {
       this.getApod();
     }
@@ -115,5 +126,9 @@ export class APODComponent implements OnInit {
       },
       this.favoriteId
     );
+  }
+
+  RedirectToSignupOrLogin() {
+    this.router.navigate(['/signupOrLogin']);
   }
 }

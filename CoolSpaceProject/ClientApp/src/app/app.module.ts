@@ -17,6 +17,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { NewUserFormComponent } from './new-user-form/new-user-form.component';
 import { UpdateUserFormComponent } from './update-user-form/update-user-form.component';
 import { HomeComponent } from './home/home.component';
+import { SignUpOrLoginComponent } from './sign-up-or-login/sign-up-or-login.component';
 
 
 
@@ -31,6 +32,7 @@ import { HomeComponent } from './home/home.component';
     NewUserFormComponent,
     UpdateUserFormComponent,
     HomeComponent,
+    SignUpOrLoginComponent,
    
   ],
   imports: [
