@@ -1,39 +1,36 @@
-
-<ng-container *ngIf="apod">
-<ng-container *ngIf="apodType === 'today'">
-    <h3>Astronomy Picture of the Day: </h3>
-</ng-container>
-
-    <h5>Title: {{ apod.title }}</h5>
-    <h6>Date: {{ apod.date }}</h6>
-    <ng-container *ngIf="apod.media_type === 'video'">
-        <youtube-player 
-            videoId="{{ youtubeId }}" 
-            suggestedQuality="highres" 
-            [height]="250" 
-            [width]="500">
-        </youtube-player>
+<ng-container *ngIf="(apodType === 'fromFavoritesList' && favoriteId !== -1) || (apodType === 'today' || apodType === 'individualDate' || apodType === 'fromList')">
+    <ng-container *ngIf="apod">
+    <ng-container *ngIf="apodType === 'today'">
+        <h3>Astronomy Picture of the Day: </h3>
     </ng-container>
-    <ng-container *ngIf="apod.media_type === 'image'">
-        <img src="{{ apod.url }}" />
+
+        <h5>Title: {{ apod.title }}</h5>
+        <h6>Date: {{ apod.date }}</h6>
+        <ng-container *ngIf="apod.media_type === 'video'">
+            <youtube-player 
+                videoId="{{ youtubeId }}" 
+                suggestedQuality="highres" 
+                [height]="250" 
+                [width]="500">
+            </youtube-player>
+        </ng-container>
+        <ng-container *ngIf="apod.media_type === 'image'">
+            <img src="{{ apod.url }}" />
+        </ng-container>
+        <div>
+            <P>
+                Explanation: {{apod.explanation}}
+            </P>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="apodType === 'today'">
+    <div>
+    Date: YYYY-MM-DD <input type="text" [(ngModel)]="specificDate"/><br/>
+        <button (click)="getApodByDate()">Get Apod By Date</button>
+    </div>
     </ng-container>
     <div>
-        <P>
-            Explanation: {{apod.explanation}}
-        </P>
+        <button *ngIf="favoriteId === -1" (click)="AddFavoriteApod()">Add to Favorites</button>
+        <button *ngIf="favoriteId > 0" (click)="DeleteFromFavApod()">Delete</button>
     </div>
 </ng-container>
-<ng-container *ngIf="apodType === 'today'">
-<div>
-   Date: YYYY-MM-DD <input type="text" [(ngModel)]="specificDate"/><br/>
-    <button (click)="getApodByDate()">Get Apod By Date</button>
-</div>
-</ng-container>
-<div>
-    <button *ngIf="!isFavorite" (click)="AddFavoriteApod()">Add to Favorites</button>
-    <button *ngIf="isFavorite" (click)="DeleteFromFavApod()">Delete</button>
-</div>
-
-
-
-
