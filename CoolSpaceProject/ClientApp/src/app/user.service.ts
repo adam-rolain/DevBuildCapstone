@@ -62,7 +62,7 @@ export class UserService {
   }
 
   logoutUser(cb: any) {
-    this.http.get<boolean>('/api/user/logout').subscribe(
+    this.http.get<number>('/api/user/logout').subscribe(
       result => {
         cb(result);
       }
