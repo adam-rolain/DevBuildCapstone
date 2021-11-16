@@ -1,41 +1,52 @@
-<ng-container *ngIf="(apodType === 'fromFavoritesList' && favoriteId !== -1) || (apodType === 'today' || apodType === 'individualDate' || apodType === 'fromList')">
-    <ng-container *ngIf="apod">
-    <ng-container *ngIf="apodType === 'today'">
-        <h3>Astronomy Picture of the Day: </h3>
-    </ng-container>
-
-        <h5>Title: {{ apod.title }}</h5>
-        <h6>Date: {{ apod.date }}</h6>
-        <ng-container *ngIf="apod.media_type === 'video'">
-            <youtube-player 
-                videoId="{{ youtubeId }}" 
-                suggestedQuality="highres" 
-                [height]="250" 
-                [width]="500">
-            </youtube-player>
+<div class="container">
+    <div class="row">
+        <ng-container *ngIf="apod">
+            <div class="col-md-6">
+                <ng-container *ngIf="apodType === 'today'">
+                    <h1>Astronomy Picture of the Day: </h1>
+                </ng-container>
+            </div>
         </ng-container>
-        <ng-container *ngIf="apod.media_type === 'image'">
-            <img src="{{ apod.url }}" />
-        </ng-container>
-        <div>
-            <P>
-                Explanation: {{apod.explanation}}
-            </P>
-        </div>
-    </ng-container>
-    <ng-container *ngIf="apodType === 'today'">
-    <div>
-    Date: YYYY-MM-DD <input type="text" [(ngModel)]="specificDate"/><br/>
-        <button (click)="getApodByDate()">Get Apod By Date</button>
     </div>
-    </ng-container>
-    <div>
-        <ng-container *ngIf="favoriteId === -1 && userId > 0">
-            <button (click)="AddFavoriteApod()">Add to Favorites</button>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <ng-container *ngIf="(apodType === 'fromFavoritesList' && favoriteId !== -1) || (apodType === 'today' || apodType === 'individualDate' || apodType === 'fromList')">
+            <ng-container *ngIf="apod">
+                <h3 class="text-info">{{ apod.date }}</h3>
+                <ng-container *ngIf="apod.media_type === 'video'">
+                    <youtube-player 
+                        videoId="{{ youtubeId }}" 
+                        suggestedQuality="highres" 
+                        [height]="250" 
+                        [width]="500">
+                    </youtube-player>
+                </ng-container>
+                <ng-container *ngIf="apod.media_type === 'image'">
+                    <img src="{{ apod.url }}" class="img-fluid" />
+                </ng-container>
+                <div>
+                    <h3 class="text-info">{{ apod.title }}</h3>
+                    <p class="paragraph">{{ apod.explanation }}</p>
+                </div>
+            </ng-container>
+            <div class="row">
+                <div class="col-md-12 bg-dark offset-md-10">
+                    <ng-container *ngIf="favoriteId === -1 && userId > 0">
+                        <button type="button" class="btn-sm btn-info" (click)="AddFavoriteApod()">Add to Favorites</button>
+                    </ng-container>
+                    <ng-container *ngIf="favoriteId === -1 && userId === -1">
+                        <button type="button" class="btn-sm btn-info" (click)="RedirectToSignupOrLogin()">Add to Favorites</button>
+                    </ng-container>
+                    <button *ngIf="favoriteId > 0" type="button" class="btn-sm btn-danger col-md-1" (click)="DeleteFromFavApod()">Delete</button>
+                </div>
+            </div>
+            <ng-container *ngIf="apodType === 'today'">
+            <div>
+            Date: YYYY-MM-DD <input type="text" [(ngModel)]="specificDate"/><br/>
+                <button type="button" class="btn btn-secondary" (click)="getApodByDate()">Get Apod By Date</button>
+            </div>
+            </ng-container>
         </ng-container>
-        <ng-container *ngIf="favoriteId === -1 && userId === -1">
-            <button (click)="RedirectToSignupOrLogin()">Add to Favorites</button>
-        </ng-container>
-        <button *ngIf="favoriteId > 0" (click)="DeleteFromFavApod()">Delete</button>
+      </div>
     </div>
-</ng-container>
+  </div>
