@@ -1,3 +1,7 @@
 .loginIcon {
     margin-right: 8em;
 }
+
+.loginIcon-dark {
+    color: #3a3f44;
+}

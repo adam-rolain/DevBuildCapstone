@@ -10,6 +10,7 @@ import { UserService } from '../user.service';
 export class NavBarComponent implements OnInit {
   public currentUserId?: Observable<number>;
   userId: number = -1;
+  collapsed = true;
 
   constructor(private userService: UserService) {
    }
