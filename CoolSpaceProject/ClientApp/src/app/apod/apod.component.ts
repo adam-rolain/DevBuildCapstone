@@ -129,6 +129,6 @@ export class APODComponent implements OnInit {
   }
 
   RedirectToSignupOrLogin() {
-    this.router.navigate(['/signupOrLogin']);
+    this.router.navigate(['/login']);
   }
 }
