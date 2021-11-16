@@ -6,4 +6,6 @@ body{
     width: 100vw;
 
     }
-    
+    .paragraph {
+        font-size: 1.25em;
+    }
