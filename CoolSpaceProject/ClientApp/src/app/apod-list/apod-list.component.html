@@ -1,13 +1,16 @@
-<ng-container *ngIf="isFavoriteList">
-<div>
-    <h3>Favorite APODS List:</h3> 
-</div>
-</ng-container>
-<ng-container *ngIf="!isFavoriteList">
-    <div>
-        <h3>APODS List:</h3> 
-    </div>
-    </ng-container>
+<div class="container">
+<div class="row">
+    
+        <div class="col-md-6">
+            <ng-container *ngIf="isFavoriteList">
+                <h1>Favorite APODS List:</h1>
+            </ng-container>
+            <ng-container *ngIf="!isFavoriteList">
+                <h1>APODS List:</h1>
+            </ng-container>
+        </div>
+ </div>
+
 
 <ng-container *ngIf="!isFavoriteList">
     <ng-container *ngFor="let apod of ApodList">
@@ -33,3 +36,4 @@
      </div>
    
 </ng-container>
+</div>
