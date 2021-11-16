@@ -1,39 +1,42 @@
-<div class="container">
-<div class="row">
-    
-        <div class="col-md-6">
-            <ng-container *ngIf="isFavoriteList">
-                <h1>Favorite APODS List:</h1>
-            </ng-container>
-            <ng-container *ngIf="!isFavoriteList">
-                <h1>APODS List:</h1>
-            </ng-container>
+<div class="move-apods-down">
+    <div class="container">
+        <div class="row">
+            
+                <div class="col-md-6">
+                    <ng-container *ngIf="isFavoriteList">
+                        <h1>Favorite APODS List:</h1>
+                    </ng-container>
+                    <ng-container *ngIf="!isFavoriteList">
+                        <h1>APODS List:</h1>
+                    </ng-container>
+                </div>
         </div>
- </div>
 
 
-<ng-container *ngIf="!isFavoriteList">
-    <ng-container *ngFor="let apod of ApodList">
-    
-        <app-apod [apod]="apod" [apodType]="'fromList'"></app-apod>
-      
-    </ng-container>
-</ng-container>
+        <ng-container *ngIf="!isFavoriteList">
+            <ng-container *ngFor="let apod of ApodList">
+            
+                <app-apod [apod]="apod" [apodType]="'fromList'"></app-apod>
+            
+            </ng-container>
+        </ng-container>
 
-<ng-container *ngIf="isFavoriteList">
-    <ng-container *ngFor="let apod of ApodList">
-    
-        <app-apod [apod]="apod" [apodType]="'fromFavoritesList'"></app-apod>
-      
-    </ng-container>
-</ng-container>
+        <ng-container *ngIf="isFavoriteList">
+            <ng-container *ngFor="let apod of ApodList">
+            
+                <app-apod [apod]="apod" [apodType]="'fromFavoritesList'"></app-apod>
+            
+            </ng-container>
+        </ng-container>
 
-<ng-container *ngIf="!isFavoriteList">
-    <div>
-        Start Date: YYYY-MM-DD <input type="text" [(ngModel)]="newStartDate"/><br/>
-        End Date: YYYY-MM-DD <input type="text" [(ngModel)]="newEndDate"/><br/>
-        <button (click)="getApodByDateRange()">Get Apods by Date Range</button>
-     </div>
-   
-</ng-container>
+        <ng-container *ngIf="!isFavoriteList">
+            <div>
+                Start Date: YYYY-MM-DD <input type="text" [(ngModel)]="newStartDate"/><br/>
+                End Date: YYYY-MM-DD <input type="text" [(ngModel)]="newEndDate"/><br/>
+                <button (click)="getApodByDateRange()">Get Apods by Date Range</button>
+            </div>
+        
+        </ng-container>
+    </div>
 </div>
+<br />
