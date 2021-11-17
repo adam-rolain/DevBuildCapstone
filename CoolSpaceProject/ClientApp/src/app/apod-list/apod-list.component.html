@@ -30,12 +30,24 @@
         </ng-container>
 
         <ng-container *ngIf="!isFavoriteList">
-            <div>
-                Start Date: YYYY-MM-DD <input type="text" [(ngModel)]="newStartDate"/><br/>
-                End Date: YYYY-MM-DD <input type="text" [(ngModel)]="newEndDate"/><br/>
-                <button (click)="getApodByDateRange()">Get Apods by Date Range</button>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" class="datepicker"></ngb-datepicker>
+                        <ng-template #t let-date let-focused="focused">
+                        <span class="custom-day"
+                                [class.focused]="focused"
+                                [class.range]="isRange(date)"
+                                [class.faded]="isHovered(date) || isInside(date)"
+                                (mouseenter)="hoveredDate = date"
+                                (mouseleave)="hoveredDate = null">
+                            {{ date.day }}
+                        </span>
+                        </ng-template>
+                        <button (click)="convertToString()" class="btn-sm btn-success button-width">Go</button>
+                    </div>
+                </div>
             </div>
-        
         </ng-container>
     </div>
 </div>
