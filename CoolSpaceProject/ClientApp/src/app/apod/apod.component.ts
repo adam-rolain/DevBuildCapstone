@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbCalendar, NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 
 import { APOD } from '../apod';
@@ -29,8 +30,9 @@ export class APODComponent implements OnInit {
   favoriteId: number = -1;
   public currentUserId?: Observable<number>;
   userId: number = -1;
+  model?: NgbDateStruct;
 
-  constructor(private spaceService: CoolSpaceService, private userService: UserService, private router: Router) { }
+  constructor(private spaceService: CoolSpaceService, private userService: UserService, private router: Router, private calendar: NgbCalendar) { }
 
   ngOnInit(): void {
     this.currentUserId = this.userService.getCurrentUserId();
@@ -39,6 +41,8 @@ export class APODComponent implements OnInit {
       console.log(`Logging from Apod Component: ${userId}`);
       this.userId = userId;
     })
+
+    this.selectToday();
 
     if (this.apodType === 'today') {
       this.getApod();
@@ -130,5 +134,14 @@ export class APODComponent implements OnInit {
 
   RedirectToSignupOrLogin() {
     this.router.navigate(['/login']);
+  }
+
+  convertToString() {
+    this.specificDate = `${this.model?.year}-${this.model?.month}-${this.model?.day}`;
+    this.getApodByDate();
+  }
+
+  selectToday() {
+    this.model = this.calendar.getToday();
   }
 }

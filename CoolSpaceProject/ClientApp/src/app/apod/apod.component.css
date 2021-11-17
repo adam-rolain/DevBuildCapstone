@@ -5,3 +5,16 @@
   .bgcolorT { background:transparent !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
   .bgPic {background-image: url('https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/02428/opgs/edr/ncam/NRB_613059797EDR_S0752860NCAM00546M_.JPG');
     background-size: cover;}
+
+.datepicker {
+  background-color: rgb(233,236,239);
+}
+
+.datepicker-position {
+  position: relative;
+  right: 10em;
+}
+
+.button-width {
+  padding: 0.5em 7.64em;
+}
