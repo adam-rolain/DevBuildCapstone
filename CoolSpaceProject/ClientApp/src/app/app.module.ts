@@ -18,6 +18,8 @@ import { NewUserFormComponent } from './new-user-form/new-user-form.component';
 import { UpdateUserFormComponent } from './update-user-form/update-user-form.component';
 import { HomeComponent } from './home/home.component';
 
+import { MarsRoverListComponent } from './mars-rover-list/mars-rover-list.component';
+
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { HomeComponent } from './home/home.component';
     MarsRoverComponent,
     NewUserFormComponent,
     UpdateUserFormComponent,
-    HomeComponent
+    HomeComponent,
+    MarsRoverListComponent
    
   ],
   imports: [

@@ -60,10 +60,13 @@ namespace CoolSpaceProject.Controllers
         {
             return DAL.DeleteFavApod(favoriteapodid);
         }
+        //=======================================================================
+        //                          Rover:
+        //=======================================================================
 
         // https://localhost:44304/api/marsrover?earthDate=2021-11-08&roverName=curiosity
         [HttpGet("/api/marsrover")]
-        public async Task<Photos> GetRoverPhotosByEarthDate(string earthDate, string roverName)
+        public async Task<MarsRoverResponse> GetRoverPhotosByEarthDate(string earthDate, string roverName)
         {
             return await RoverDAL.GetAllRoverPhotosbyEarthDate(earthDate, roverName);
         }
@@ -74,6 +77,9 @@ namespace CoolSpaceProject.Controllers
         {
             return RoverDAL.SaveFavoriteRoverPhoto(earthDate, page, index);
         }
+        //=======================================================================
+        //                             User:
+        //=======================================================================
 
         // https://localhost:44304/api/user/login?userName=TFecto&password=dog1234
         [HttpGet("/api/user/login")]
