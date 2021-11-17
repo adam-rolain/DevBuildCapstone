@@ -8,6 +8,7 @@ import { NewUserFormComponent } from '../new-user-form/new-user-form.component';
 import { UpdateUserFormComponent } from '../update-user-form/update-user-form.component';
 import { HomeComponent } from '../home/home.component';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import { MarsRoverListComponent } from '../mars-rover-list/mars-rover-list.component';
 
 
 
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'login',  component: UserLoginComponent },
   { path: 'marsRover', component: MarsRoverComponent },
   { path: 'navbar', component: NavBarComponent },
+  { path: 'marsRoverList', component: MarsRoverListComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
