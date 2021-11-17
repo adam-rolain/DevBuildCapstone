@@ -38,7 +38,7 @@ namespace CoolSpaceProject.Models
             // Curiosity: 2012-08-05 -> Present
             // Spirit: 2004-01-04 -> 2010-03-22
             // Opportunity: 2004-01-01 -> 2018-06-01
-            var response = await GetHttpClient().GetAsync($"/mars-photos/api/v1/rovers/{roverName}/photos?earth_date={earth_date}&page=1&api_key=AhkPJXB4fyYZfBLWbVJBv5HxNDZVUUb5ceAaC88r");
+            var response = await GetHttpClient().GetAsync($"/mars-photos/api/v1/rovers/{roverName}/photos?api_key=AhkPJXB4fyYZfBLWbVJBv5HxNDZVUUb5ceAaC88r&camera=FHAZ&page=1&earth_date={earth_date}");
             MarsRoverResponse roverresponse = await response.Content.ReadAsAsync<MarsRoverResponse>();
             return roverresponse;
         }

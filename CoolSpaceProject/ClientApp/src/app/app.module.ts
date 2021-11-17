@@ -17,10 +17,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { NewUserFormComponent } from './new-user-form/new-user-form.component';
 import { UpdateUserFormComponent } from './update-user-form/update-user-form.component';
 import { HomeComponent } from './home/home.component';
-
 import { MarsRoverListComponent } from './mars-rover-list/mars-rover-list.component';
-
-
 
 @NgModule({
   declarations: [
@@ -34,7 +31,6 @@ import { MarsRoverListComponent } from './mars-rover-list/mars-rover-list.compon
     UpdateUserFormComponent,
     HomeComponent,
     MarsRoverListComponent
-   
   ],
   imports: [
     BrowserModule,
