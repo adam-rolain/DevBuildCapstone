@@ -1,4 +1,20 @@
-<p>mars-rover-list works!</p>
-<div *ngIf="MarsRoverList">
-    {{MarsRoverList.photos[0].id}}
-</div>
+<ngb-datepicker #dp [(ngModel)]="model" class="datepicker" [minDate]="{year: 2000, month: 1, day: 1}" [maxDate]="{year: 2021, month: 12, day: 31}"></ngb-datepicker>
+<label for="rover">Select a Rover</label>
+
+<select [(ngModel)]="roverName" name="rover" id="rover">
+  <option value="curiosity">Curiosity</option>
+  <option value="spirit">Spirit</option>
+  <option value="opportunity">Opportunity</option>
+</select>
+<button class="btn-sm btn-success button-width" (click)="displayPhotos()">Go</button>
+
+
+<!--
+<ng-container *ngFor="let rover of marsRoverList">
+    <app-mars-rover [rover]="rover"></app-mars-rover>
+</ng-container>
+-->
+<ng-container *ngIf="marsRoverList">
+    {{marsRoverList.photos[0].id}}
+</ng-container>
+

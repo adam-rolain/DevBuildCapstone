@@ -7,6 +7,6 @@ namespace CoolSpaceProject.Models
 {
     public class MarsRoverResponse
     {
-        public Photos photos { get; set; }
+        public List<MarsRover> photos { get; set; }
     }
 }

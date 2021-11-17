@@ -14,7 +14,7 @@ export class MarsRoverService {
 
 
   displayMarsRoverByDateRange(cb: any, earth_date: string, roverName: string) {
-    this.http.get<MarsRoverResponse>(`/api/marsrover?earth_date=${earth_date}&roverName=${roverName}`).subscribe(
+    this.http.get<MarsRoverResponse>(`/api/marsrover?earthDate=${earth_date}&roverName=${roverName}`).subscribe(
 			result => {
 				cb(result);
 			}
