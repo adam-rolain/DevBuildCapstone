@@ -42,7 +42,8 @@ namespace CoolSpaceProject.Models
             MarsRoverResponse roverresponse = await response.Content.ReadAsAsync<MarsRoverResponse>();
             return roverresponse;
         }
-
+        //comments for adam
+        //more comments for adam
 
         //save one photo favorite roverId (save photo to favrover db)
 
