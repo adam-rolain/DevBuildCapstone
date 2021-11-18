@@ -24,6 +24,7 @@ const routes: Routes = [
   { path: 'marsRover', component: MarsRoverComponent },
   { path: 'navbar', component: NavBarComponent },
   { path: 'marsRoverList', component: MarsRoverListComponent },
+  { path: 'favoriteRoverList', component: MarsRoverListComponent },
   { path: 'techTranser', component: PatentListComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];

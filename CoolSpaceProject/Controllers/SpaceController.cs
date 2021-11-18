@@ -71,12 +71,6 @@ namespace CoolSpaceProject.Controllers
             return await RoverDAL.GetAllRoverPhotosbyEarthDate(earthDate, roverName);
         }
 
-        // https://localhost:44304/api/favoriteRover?
-        [HttpPost("/api/favoriteRover")]
-        public FavoriteRover SaveFavoriteRover(string earthDate, int page, int index)
-        {
-            return RoverDAL.SaveFavoriteRoverPhoto(earthDate, page, index);
-        }
         //=======================================================================
         //                             User:
         //=======================================================================

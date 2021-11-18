@@ -6,15 +6,11 @@ using System.Threading.Tasks;
 
 namespace CoolSpaceProject.Models
 {
-    [Table("favoriteRover")]
-    public class FavoriteRover
+    public class SaveFavoriteRover
     {
-        [Key]
-        public int id { get; set; }
         public string name { get; set; }
         public string cameraName { get; set; }
         public string image { get; set; }
         public string date { get; set; }
-        public int userId { get; set; }
     }
 }

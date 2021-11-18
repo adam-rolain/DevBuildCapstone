@@ -1,0 +1,14 @@
+.button-position {
+    position: relative;
+    left: 10em;
+}
+
+.button-width {
+    padding-right: 2em;
+    padding-left: 2em;
+}
+
+.date-position {
+    position: relative;
+    right: 3em;
+}
