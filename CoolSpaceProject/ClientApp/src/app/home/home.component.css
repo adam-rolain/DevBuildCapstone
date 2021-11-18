@@ -13,3 +13,15 @@
 .move-home-down {
     margin-top: 8em;
 }
+
+.card-link {
+    text-decoration: none;
+}
+
+.card-link:hover {
+    cursor: pointer;
+}
+
+.card:hover {
+    border-width: 2px;
+}
