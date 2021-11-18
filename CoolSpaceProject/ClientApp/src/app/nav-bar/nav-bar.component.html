@@ -19,7 +19,10 @@
           <a class="nav-link" routerLink="/apodList" routerLinkActive="active">Browse APOD's</a>
         </li>
         <li class="nav-item">
-          <a *ngIf="userId > -1" class="nav-link" routerLink="/favoriteApodList" [queryParams]="{ isFavoriteList: true }" routerLinkActive="active">Favorites</a>
+          <a *ngIf="userId > -1" class="nav-link" routerLink="/favoriteApodList" [queryParams]="{ isFavoriteList: true }" routerLinkActive="active">Favorite APODs</a>
+        </li>
+        <li class="nav-item">
+          <a *ngIf="userId > -1" class="nav-link" routerLink="/favoriteRoverList" [queryParams]="{ isFavoriteList: true }" routerLinkActive="active">Favorite Rovers</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/marsRoverList" routerLinkActive="active">Mars Rover</a>

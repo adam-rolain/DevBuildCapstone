@@ -36,7 +36,7 @@
                         <ng-container *ngIf="favoriteId === -1 && userId === -1">
                             <button type="button" class="btn-sm btn-info" (click)="RedirectToSignupOrLogin()">Add to Favorites</button>
                         </ng-container>
-                        <button *ngIf="favoriteId > 0" type="button" class="btn-sm btn-danger col-md-2" (click)="DeleteFromFavApod()">Delete</button>
+                        <button *ngIf="favoriteId > 0" type="button" class="btn-sm btn-danger col-md-2" (click)="DeleteFromFavApod()">Unfavorite</button>
                     </div>
                 </ng-container>
             </div>

@@ -5,6 +5,7 @@ import { UserService } from '../user.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { SaveFavoriteRover } from '../save-favorite-rover';
+import { FavoriteRover } from '../favorite-rover';
 
 
 @Component({
@@ -33,15 +34,24 @@ export class MarsRoverComponent implements OnInit {
       status: ''
     }
   }
+  @Input() favoriteRover: FavoriteRover = {
+    id: -1,
+    name: '',
+    cameraName: '',
+    image: '',
+    date: '',
+    userId: -1
+  }
   favoriteId: number = -1;
   currentUserId?: Observable<number>;
   userId: number = -1;
-  favoriteRover: SaveFavoriteRover = {
+  saveFavoriteRover: SaveFavoriteRover = {
     name: '',
     cameraName: '',
     image: '',
     date: ''
   }
+  @Input() marsRoverType: string = '';
 
   constructor(private marsRoverService: MarsRoverService, private userService: UserService, private router: Router) { }
 
@@ -52,10 +62,14 @@ export class MarsRoverComponent implements OnInit {
       console.log(`Logging from Mars Rover Component: ${userId}`);
       this.userId = userId;
     })
+
+    if (this.marsRoverType === 'fromFavoriteList') {
+      this.favoriteId = this.favoriteRover.id;
+    }
   }
 
   AddFavoriteRover() {
-    this.favoriteRover = {
+    this.saveFavoriteRover = {
       name: this.marsRover.rover.name,
       cameraName: this.marsRover.camera.full_name,
       image: this.marsRover.img_src,
@@ -65,12 +79,19 @@ export class MarsRoverComponent implements OnInit {
       (result: any) => {
         this.favoriteId = result;
       },
-      this.favoriteRover
+      this.saveFavoriteRover
     )
   }
 
   DeleteFavoriteRover() {
-    this.favoriteId = -1;
+    this.marsRoverService.deleteFavoriteRover(
+      (result: any) => {
+        if (result === true) {
+          this.favoriteId = -1;
+        }
+      },
+      this.favoriteId
+    );
   }
 
   RedirectToSignupOrLogin() {

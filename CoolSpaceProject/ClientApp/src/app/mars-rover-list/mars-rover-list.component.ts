@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { FavoriteRover } from '../favorite-rover';
 import { MarsRover } from '../mars-rover';
 import { MarsRoverResponse } from '../mars-rover-response';
 import { MarsRoverService } from '../mars-rover.service';
@@ -12,13 +14,22 @@ import { Photos } from '../photos';
 })
 export class MarsRoverListComponent implements OnInit {
   marsRoverList?: MarsRoverResponse;
+  favoriteRoverList?: FavoriteRover[];
+  isFavoriteList: boolean = false;
   earth_date: string ='';
   roverName: string = '';
   model?: NgbDateStruct;
 
-  constructor(private roverservice: MarsRoverService) { }
+  constructor(private roverservice: MarsRoverService, private marsRoverService: MarsRoverService, private activatedRoute: ActivatedRoute) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.isFavoriteList = params['isFavoriteList'];
+    });
+    if (this.isFavoriteList) {
+      this.getFavoriteRovers();
+    }    
+  }
 
   getMarsRoverListByEarthDateAndRoverName(){
     this.roverservice.displayMarsRoverByDateRange(
@@ -32,5 +43,13 @@ export class MarsRoverListComponent implements OnInit {
   displayPhotos(){
     this.earth_date = `${this.model?.year}-${this.model?.month}-${this.model?.day}`;
     this.getMarsRoverListByEarthDateAndRoverName();
+  }
+
+  getFavoriteRovers() {
+    this.marsRoverService.getFavoriteRovers(
+      (result: any) => {
+        this.favoriteRoverList = result.reverse();
+      },
+    );
   }
 }

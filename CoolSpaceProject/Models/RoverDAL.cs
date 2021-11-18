@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Dapper.Contrib.Extensions;
 using MySql.Data.MySqlClient;
 using System.Net.Http;
+using CoolSpaceProject.Models;
+using Dapper;
 
 namespace CoolSpaceProject.Models
 {
@@ -33,6 +35,11 @@ namespace CoolSpaceProject.Models
         //read
         //get all photos from one rover by earth_date with default camera
 
+        public static List<FavoriteRover> GetFavoriteMarsRovers()
+        {
+            return DAL.DB.Query<FavoriteRover>("SELECT * FROM favoriteRover WHERE userId = @userId", new { userId = UserDAL.CurrentUserId }).ToList();
+        }
+
         public static async Task<MarsRoverResponse> GetAllRoverPhotosbyEarthDate(string earth_date, string roverName)
         {
             // Curiosity: 2012-08-05 -> Present
@@ -47,8 +54,16 @@ namespace CoolSpaceProject.Models
 
         //save one photo favorite roverId (save photo to favrover db)
 
-        public static long SaveFavoriteRover(SaveFavoriteRover favoriteRover)
+        public static long SaveFavoriteRover(SaveFavoriteRover saveFavoriteRover)
         {
+            FavoriteRover favoriteRover = new FavoriteRover()
+            {
+                name = saveFavoriteRover.name,
+                cameraName = saveFavoriteRover.cameraName,
+                image = saveFavoriteRover.image,
+                date = saveFavoriteRover.date,
+                userId = UserDAL.CurrentUserId
+            };
             long responseFromDB = DAL.DB.Insert(favoriteRover);
             if (responseFromDB < 0)
             {
@@ -58,6 +73,11 @@ namespace CoolSpaceProject.Models
             {
                 return responseFromDB;
             }
+        }
+
+        public static bool DeleteFavoriteRover(int favoriteRoverId)
+        {
+            return DAL.DB.Delete<FavoriteRover>(new FavoriteRover { id = favoriteRoverId });
         }
 
         //get all photos from diff rover by earth_date with default camera

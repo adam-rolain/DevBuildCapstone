@@ -5,6 +5,7 @@ import { MarsRover } from './mars-rover';
 import { Photos } from './photos';
 import { MarsRoverResponse } from './mars-rover-response';
 import { SaveFavoriteRover } from './save-favorite-rover';
+import { FavoriteRover } from './favorite-rover';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,22 @@ export class MarsRoverService {
 			  cb(result);
 		  }
 	  );
+  }
+
+  deleteFavoriteRover(cb: any, favoriteRoverId: number) {
+    this.http.delete<boolean>(`/api/favoriteRover/delete/${favoriteRoverId}`).subscribe(
+			result =>{
+				cb(result);
+			}
+		)
+  }
+
+  getFavoriteRovers(cb: any, ) {
+    this.http.get<FavoriteRover[]>(`/api/favoriteRoverList`).subscribe(
+      result => {
+        cb(result);
+      }
+    );
   }
 
 

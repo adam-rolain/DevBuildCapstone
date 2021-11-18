@@ -1,18 +1,45 @@
-<h3 class="text-success">{{ marsRover.rover.name }}</h3>
-<p class="paragraph">{{ marsRover.camera.full_name }}</p>
-<img src="{{ marsRover.img_src }}" />
-<br /><br />
+<ng-container *ngIf="marsRoverType === 'fromList'">
+    <h3 class="text-success">{{ marsRover.rover.name }}</h3>
+    <p class="paragraph">{{ marsRover.camera.full_name }}</p>
+    <img src="{{ marsRover.img_src }}" />
+    <br /><br />
 
-<div class="container">
-    <div class="row">
-        <div class="col-md">
-            <ng-container *ngIf="favoriteId === -1 && userId > 0">
-                <button type="button" class="btn-sm btn-info" (click)="AddFavoriteRover()">Add to Favorites</button>
-            </ng-container>
-            <ng-container *ngIf="favoriteId === -1 && userId === -1">
-                <button type="button" class="btn-sm btn-info" (click)="RedirectToSignupOrLogin()">Add to Favorites</button>
-            </ng-container>
-            <button *ngIf="favoriteId > 0" type="button" class="btn-sm btn-danger col-md-2" (click)="DeleteFavoriteRover()">Delete</button>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 offset-md-10 button-position">
+                <ng-container *ngIf="favoriteId === -1 && userId > 0">
+                    <button type="button" class="btn-sm btn-info" (click)="AddFavoriteRover()">Add to Favorites</button>
+                </ng-container>
+                <ng-container *ngIf="favoriteId === -1 && userId === -1">
+                    <button type="button" class="btn-sm btn-info" (click)="RedirectToSignupOrLogin()">Add to Favorites</button>
+                </ng-container>
+                <button *ngIf="favoriteId > 0" type="button" class="btn-sm btn-danger button-width" (click)="DeleteFavoriteRover()">Unfavorite</button>
+            </div>
         </div>
     </div>
-</div>
+</ng-container>
+<ng-container *ngIf="marsRoverType === 'fromFavoriteList' && favoriteId > 0">
+    <div class="container">
+        <div class="row">
+          <div class="col-md">
+            <h3 class="text-info date-position">{{ favoriteRover.date }}</h3>
+            <br/>
+          </div>
+        </div>
+    </div>
+
+    <h3 class="text-success">{{ favoriteRover.name }}</h3>
+    <p class="paragraph">{{ favoriteRover.cameraName }}</p>
+    <img src="{{ favoriteRover.image }}" />
+    <br /><br />
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 offset-md-10 button-position">
+                <button type="button" class="btn-sm btn-danger button-width" (click)="DeleteFavoriteRover()">Unfavorite</button>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<br />
+<br />
