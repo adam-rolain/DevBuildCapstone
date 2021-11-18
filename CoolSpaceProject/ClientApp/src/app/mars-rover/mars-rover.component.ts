@@ -13,7 +13,7 @@ import { MarsRoverService } from '../mars-rover.service';
 })
 export class MarsRoverComponent implements OnInit {
 
-  @Input() marsrover: MarsRover ={
+  @Input() marsRover: MarsRover ={
     id: 0,
     sol: 0,
     camera: {

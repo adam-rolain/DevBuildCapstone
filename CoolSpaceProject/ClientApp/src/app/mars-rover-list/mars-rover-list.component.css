@@ -1,0 +1,19 @@
+.button-position {
+    position: relative;
+    top: 2em;
+}
+
+.button-width {
+    padding: 5em 5em;
+}
+
+.dropdown-position {
+    position: relative;
+    top: 6em;
+    left: 3.45em;
+}
+
+.rover-position {
+    position: relative;
+    left: 2em;
+}
