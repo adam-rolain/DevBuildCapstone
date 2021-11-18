@@ -18,6 +18,8 @@ import { NewUserFormComponent } from './new-user-form/new-user-form.component';
 import { UpdateUserFormComponent } from './update-user-form/update-user-form.component';
 import { HomeComponent } from './home/home.component';
 import { MarsRoverListComponent } from './mars-rover-list/mars-rover-list.component';
+import { PatentListComponent } from './patent-list/patent-list.component';
+import { PatentComponent } from './patent/patent.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { MarsRoverListComponent } from './mars-rover-list/mars-rover-list.compon
     NewUserFormComponent,
     UpdateUserFormComponent,
     HomeComponent,
-    MarsRoverListComponent
+    MarsRoverListComponent,
+    PatentListComponent,
+    PatentComponent
   ],
   imports: [
     BrowserModule,
