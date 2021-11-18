@@ -2,3 +2,17 @@
 <p class="paragraph">{{ marsRover.camera.full_name }}</p>
 <img src="{{ marsRover.img_src }}" />
 <br /><br />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            <ng-container *ngIf="favoriteId === -1 && userId > 0">
+                <button type="button" class="btn-sm btn-info" (click)="AddFavoriteRover()">Add to Favorites</button>
+            </ng-container>
+            <ng-container *ngIf="favoriteId === -1 && userId === -1">
+                <button type="button" class="btn-sm btn-info" (click)="RedirectToSignupOrLogin()">Add to Favorites</button>
+            </ng-container>
+            <button *ngIf="favoriteId > 0" type="button" class="btn-sm btn-danger col-md-2" (click)="DeleteFavoriteRover()">Delete</button>
+        </div>
+    </div>
+</div>

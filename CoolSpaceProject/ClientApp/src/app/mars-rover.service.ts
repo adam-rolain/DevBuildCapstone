@@ -4,6 +4,7 @@ import { Rover } from './rover';
 import { MarsRover } from './mars-rover';
 import { Photos } from './photos';
 import { MarsRoverResponse } from './mars-rover-response';
+import { SaveFavoriteRover } from './save-favorite-rover';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,14 @@ export class MarsRoverService {
 				cb(result);
 			}
 		);
+  }
+
+  addFavoriteRover(cb: any, favoriteRover: SaveFavoriteRover) {
+    this.http.post<number>(`/api/favoriteRover`, favoriteRover).subscribe(
+		  result => {
+			  cb(result);
+		  }
+	  );
   }
 
 

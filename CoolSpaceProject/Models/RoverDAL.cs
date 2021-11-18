@@ -47,18 +47,17 @@ namespace CoolSpaceProject.Models
 
         //save one photo favorite roverId (save photo to favrover db)
 
-        public static  FavoriteRover SaveFavoriteRoverPhoto(string earthDate, int page, int arrayIndex)
+        public static long SaveFavoriteRover(SaveFavoriteRover favoriteRover)
         {
-            FavoriteRover therover = new FavoriteRover()
+            long responseFromDB = DAL.DB.Insert(favoriteRover);
+            if (responseFromDB < 0)
             {
-                userId = UserDAL.CurrentUserId,
-                earthDate = earthDate,
-                page = page,
-                arrayIndex = arrayIndex
-            };
-            DAL.DB.Insert(therover);
-
-            return therover ;
+                return -1;
+            }
+            else
+            {
+                return responseFromDB;
+            }
         }
 
         //get all photos from diff rover by earth_date with default camera
