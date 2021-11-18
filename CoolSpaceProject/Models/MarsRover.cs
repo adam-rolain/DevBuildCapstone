@@ -17,7 +17,5 @@ namespace CoolSpaceProject.Models
         public string img_src { get; set; }
         public string earth_date { get; set; }
         public Rover rover { get; set; }
-
-
     }
 }

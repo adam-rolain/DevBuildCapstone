@@ -1,20 +1,93 @@
-<ngb-datepicker #dp [(ngModel)]="model" class="datepicker" [minDate]="{year: 2000, month: 1, day: 1}" [maxDate]="{year: 2021, month: 12, day: 31}"></ngb-datepicker>
-<label for="rover">Select a Rover</label>
-
-<select [(ngModel)]="roverName" name="rover" id="rover">
-  <option value="curiosity">Curiosity</option>
-  <option value="spirit">Spirit</option>
-  <option value="opportunity">Opportunity</option>
-</select>
-<button class="btn-sm btn-success button-width" (click)="displayPhotos()">Go</button>
-
-
-<!--
-<ng-container *ngFor="let rover of marsRoverList">
-    <app-mars-rover [rover]="rover"></app-mars-rover>
+<div class="container move-apods-down">
+  <div class="row">
+    <div class="col-md">
+      <h1>Browse Mars Rover Photos by Rover and Date</h1>
+      <br/>
+      <h3 class="text-info">Below are the available dates for each rover:</h3>
+    </div>
+  </div>
+</div>
+<div class="container move-apods-down">
+  <div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8">
+      <table class="table paragraph">
+        <thead>
+          <tr class="table-primary">
+            <th scope="col">Rover</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-secondary border-primary">
+            <td>Curiosity</td>
+            <td>August 5th, 2012</td>
+            <td>Present</td>
+          </tr>
+          <tr class="table-secondary border-primary">
+            <td>Spirit</td>
+            <td>January 4th, 2004</td>
+            <td>March 22nd, 2010</td>
+          </tr>
+          <tr class="table-secondary border-primary">
+            <td>Opportunity</td>
+            <td>January 1st, 2004</td>
+            <td>June 1st, 2018</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md">
+      <h3 class="text-info">{{ earth_date }}</h3>
+      <br/>
+    </div>
+  </div>
+</div>
+<ng-container *ngIf="marsRoverList && marsRoverList.photos">
+  <ng-container *ngFor="let rover of marsRoverList.photos">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 offset-md-1 rover-position">
+          <app-mars-rover [marsRover]="rover"></app-mars-rover>
+        </div>
+      </div>
+    </div> 
+  </ng-container>
 </ng-container>
--->
-<ng-container *ngIf="marsRoverList">
-    {{marsRoverList.photos[0].id}}
-</ng-container>
+<div class="container move-apods-down">
+  <div class="row">
+    <div class="col-md-3 offset-md-2">
+      <ngb-datepicker #dp [(ngModel)]="model" class="datepicker" [minDate]="{year: 2000, month: 1, day: 1}" [maxDate]="{year: 2021, month: 12, day: 31}"></ngb-datepicker>
+    </div>
+    <div class="col-md-3 dropdown-position">
+      <label for="rover" class="paragraph"><h5>Select a Rover</h5></label><br/>
+      <select [(ngModel)]="roverName" name="rover" id="rover" class="dropdown">
+        <option value="curiosity">Curiosity</option>
+        <option value="spirit">Spirit</option>
+        <option value="opportunity">Opportunity</option>
+      </select>
+    </div>
+    <div class="col-md-2 button-position">
+      <button class="btn btn-success button-width" (click)="displayPhotos()"><h4>Go</h4></button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 
