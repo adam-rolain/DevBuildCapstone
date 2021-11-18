@@ -54,7 +54,12 @@
   <div class="container">
     <div class="row">
       <div class="col-md">
-        <h3 class="text-info">{{ earth_date }}</h3>
+        <ng-container *ngIf="marsRoverList && marsRoverList.photos.length > 0">
+          <h3 class="text-info">{{ earth_date }}</h3>
+        </ng-container>
+        <ng-container *ngIf="marsRoverList && marsRoverList.photos.length === 0">
+          <h3 class="text-danger">Sorry, there are no photos available on that date <i class="bi bi-emoji-frown"></i></h3>
+        </ng-container>
         <br/>
       </div>
     </div>
@@ -103,7 +108,20 @@
       </div> 
     </ng-container>
   </ng-container>
-</ng-container>
+  <ng-container *ngIf="favoriteRoverList">
+    <ng-container *ngIf="favoriteRoverList.length === 0">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 offset-md-1 rover-position">
+            <h3 class="text-danger">Looks like you don't have any favorite mars rover photos <i class="bi bi-emoji-frown"></i></h3>
+            <br />
+            <a routerLink="/marsRoverList"><h3 class="text-info">Browse Mars Rover Photos</h3></a>
+          </div>
+        </div>
+      </div> 
+    </ng-container>
+  </ng-container>
+</ng-container> 
 
 
 

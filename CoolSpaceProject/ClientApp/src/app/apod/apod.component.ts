@@ -1,10 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbCalendar, NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
-
 import { APOD } from '../apod';
-import { CoolSpaceService } from '../cool-space.service';
+import { APODService } from '../apod.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -32,7 +31,7 @@ export class APODComponent implements OnInit {
   userId: number = -1;
   model?: NgbDateStruct;
 
-  constructor(private spaceService: CoolSpaceService, private userService: UserService, private router: Router, private calendar: NgbCalendar) { }
+  constructor(private apodService: APODService, private userService: UserService, private router: Router, private calendar: NgbCalendar) { }
 
   ngOnInit(): void {
     this.currentUserId = this.userService.getCurrentUserId();
@@ -66,7 +65,7 @@ export class APODComponent implements OnInit {
   }
 
   getApod() {
-    this.spaceService.displayApod(
+    this.apodService.displayApod(
       (result: any) => {
         console.log(`Result Date before setting to apod: ${result.date}`);
         this.apod = result;
@@ -92,7 +91,7 @@ export class APODComponent implements OnInit {
   }
 
   getApodByDate() {
-    this.spaceService.displayApodByDate(
+    this.apodService.displayApodByDate(
       (result: any) => {
                this.apod = result; 
               if (result.media_type === 'video') {
@@ -105,7 +104,7 @@ export class APODComponent implements OnInit {
   }
 
   AddFavoriteApod(){
-    this.spaceService.AddApodtoFavoriteList(
+    this.apodService.AddApodtoFavoriteList(
       (result: any) => {
         this.favoriteId = result;
       },
@@ -114,7 +113,7 @@ export class APODComponent implements OnInit {
   }
 
   getFavoriteApodId() {
-    this.spaceService.GetFavoriteApodId((result: any) => {
+    this.apodService.GetFavoriteApodId((result: any) => {
       this.favoriteId = result;
     },
     this.apod.date
@@ -122,7 +121,7 @@ export class APODComponent implements OnInit {
   }
 
   DeleteFromFavApod(){
-    this.spaceService.DeleteApod(
+    this.apodService.DeleteApod(
       (result: any) => {
         if (result === true) {
           this.favoriteId = -1;

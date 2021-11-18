@@ -12,11 +12,8 @@ namespace CoolSpaceProject.Models
 
         private static HttpClient GetHttpClient()
         {
-            // Building a **SINGLETON** object of type HttpClient - avoids a lot extra traffic
-
             if (client == null)
             {
-                // client instance hasn't been made yet, make it and initialize it
                 client = new HttpClient();
                 client.BaseAddress = new Uri("https://api.nasa.gov");
             }

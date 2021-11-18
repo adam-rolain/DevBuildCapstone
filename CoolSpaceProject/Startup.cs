@@ -23,7 +23,7 @@ namespace CoolSpaceProject
         public void ConfigureServices(IServiceCollection services)
         {
             string connstring = Configuration.GetConnectionString("db");
-            Models.DAL.DB = new MySqlConnection(connstring);
+            Models.ApodDAL.DB = new MySqlConnection(connstring);
 
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory

@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Rover } from './rover';
-import { MarsRover } from './mars-rover';
-import { Photos } from './photos';
 import { MarsRoverResponse } from './mars-rover-response';
 import { SaveFavoriteRover } from './save-favorite-rover';
 import { FavoriteRover } from './favorite-rover';
