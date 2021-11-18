@@ -9,10 +9,16 @@
 
 .datepicker-position {
   position: relative;
+  left: .01em;
   right: 10em;
   top: 7em;
 }
 
 .button-width {
   padding: 0.5em 7.64em;
+}
+
+.apod-position {
+  position: relative;
+  left: 2.75em;
 }
