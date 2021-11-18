@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { APOD } from '../apod';
-import { CoolSpaceService } from '../cool-space.service';
+import { APODService } from '../apod.service';
 
 @Component({
   selector: 'app-apod-list',
@@ -22,7 +22,7 @@ export class ApodListComponent implements OnInit {
   toDate: NgbDate | null = null;
 
 
-  constructor(private spaceService: CoolSpaceService, private activatedRoute: ActivatedRoute, calendar: NgbCalendar) {
+  constructor(private apodService: APODService, private activatedRoute: ActivatedRoute, calendar: NgbCalendar) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 0);
    }
@@ -38,7 +38,7 @@ export class ApodListComponent implements OnInit {
  
 
   getApodByDateRange() {
-    this.spaceService.displayApodByDateRange(
+    this.apodService.displayApodByDateRange(
       (result: any) => {
         this.ApodList = result;
       },
@@ -47,7 +47,7 @@ export class ApodListComponent implements OnInit {
   }
 
   getFavoriteApods() {
-    this.spaceService.GetFavoriteApodList(
+    this.apodService.GetFavoriteApodList(
       (result: any) => {
         this.ApodList = result.reverse();
       },

@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { FavoriteRover } from '../favorite-rover';
-import { MarsRover } from '../mars-rover';
 import { MarsRoverResponse } from '../mars-rover-response';
 import { MarsRoverService } from '../mars-rover.service';
-import { Photos } from '../photos';
 
 @Component({
   selector: 'app-mars-rover-list',

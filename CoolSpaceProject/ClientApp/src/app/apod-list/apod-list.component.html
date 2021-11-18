@@ -1,7 +1,6 @@
 <div class="move-apods-down">
     <div class="container">
         <div class="row">
-            
                 <div class="col-md-6">
                     <ng-container *ngIf="isFavoriteList">
                         <h1>Favorite APODs:</h1>
@@ -11,24 +10,30 @@
                     </ng-container>
                 </div>
         </div>
-
-
         <ng-container *ngIf="!isFavoriteList">
             <ng-container *ngFor="let apod of ApodList">
-            
                 <app-apod [apod]="apod" [apodType]="'fromList'"></app-apod>
-            
             </ng-container>
         </ng-container>
-
         <ng-container *ngIf="isFavoriteList">
             <ng-container *ngFor="let apod of ApodList">
-            
                 <app-apod [apod]="apod" [apodType]="'fromFavoritesList'"></app-apod>
-            
+            </ng-container>
+            <ng-container *ngIf="ApodList">
+                <ng-container *ngIf="ApodList.length === 0">
+                    <br />
+                    <div class="container">
+                        <div class="row">
+                          <div class="col-md-8 offset-md-1 rover-position">
+                            <h3 class="text-danger">Looks like you don't have any favorite APODs <i class="bi bi-emoji-frown"></i></h3>
+                            <br />
+                            <a routerLink="/apodList"><h3 class="text-info">Browse APODs</h3></a>
+                          </div>
+                        </div>
+                      </div> 
+                </ng-container>
             </ng-container>
         </ng-container>
-
         <ng-container *ngIf="!isFavoriteList">
             <div class="container">
                 <div class="row">

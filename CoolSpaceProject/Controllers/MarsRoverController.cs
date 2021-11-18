@@ -12,11 +12,11 @@ namespace CoolSpaceProject.Controllers
     [ApiController]
     public class MarsRoverController : ControllerBase
     {
-        // https://localhost:44304/api/favoriteRoverList
-        [HttpGet("/api/favoriteRoverList")]
-        public List<FavoriteRover> GetFavoriteMarsRovers()
+        // https://localhost:44304/api/marsrover?earthDate=2021-11-08&roverName=curiosity
+        [HttpGet("/api/marsrover")]
+        public async Task<MarsRoverResponse> GetRoverPhotosByEarthDate(string earthDate, string roverName)
         {
-            return RoverDAL.GetFavoriteMarsRovers();
+            return await RoverDAL.GetAllRoverPhotosbyEarthDate(earthDate, roverName);
         }
 
         // https://localhost:44304/api/favoriteRover
@@ -24,6 +24,13 @@ namespace CoolSpaceProject.Controllers
         public long SaveFavoriteApod([FromBody] SaveFavoriteRover favoriteRover)
         {
             return RoverDAL.SaveFavoriteRover(favoriteRover);
+        }
+
+        // https://localhost:44304/api/favoriteRoverList
+        [HttpGet("/api/favoriteRoverList")]
+        public List<FavoriteRover> GetFavoriteMarsRovers()
+        {
+            return RoverDAL.GetFavoriteMarsRovers();
         }
 
         // https://localhost:44304/api/favoriteRover/delete/1

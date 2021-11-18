@@ -15,22 +15,19 @@ namespace CoolSpaceProject.Models
 
         private static HttpClient GetHttpClient()
         {
-            // Building a **SINGLETON** object of type HttpClient - avoids a lot extra traffic
-
             if (client == null)
             {
-                // client instance hasn't been made yet, make it and initialize it
                 client = new HttpClient();
                 client.BaseAddress = new Uri("https://api.nasa.gov");
             }
             return client;
         }
 
-
+        // READ
         public static bool LoginUser(string userName, string password)
         {
             bool validLogin = false;
-            List<User> queriedUser = DAL.DB.Query<User>("SELECT * FROM user WHERE userName = @userName AND password = @password", new { userName = userName, password = password }).ToList();
+            List<User> queriedUser = ApodDAL.DB.Query<User>("SELECT * FROM user WHERE userName = @userName AND password = @password", new { userName = userName, password = password }).ToList();
             if (queriedUser.Count > 0)
             {
                 if (queriedUser[0].userName == userName && queriedUser[0].password == password)
@@ -46,27 +43,29 @@ namespace CoolSpaceProject.Models
             return validLogin;
         }
 
-        public static User CreateNewUser(User newUser)
+        public static User GetCurrentUserInformation(int id)
         {
-            newUser.id = Convert.ToInt32(DAL.DB.Insert(newUser));
-            CurrentUserId = newUser.id;
-            return newUser;
-        }
-
-        public static User GetCurrentUser(int id)
-        {
-            return DAL.DB.Get<User>(id);
-        }
-
-        public static bool UpdateUser(User user)
-        {
-            return DAL.DB.Update<User>(user);
+            return ApodDAL.DB.Get<User>(id);
         }
 
         public static int LogoutUser()
         {
             CurrentUserId = -1;
             return CurrentUserId;
+        }
+
+        // CREATE
+        public static User CreateNewUser(User newUser)
+        {
+            newUser.id = Convert.ToInt32(ApodDAL.DB.Insert(newUser));
+            CurrentUserId = newUser.id;
+            return newUser;
+        }
+
+        // UPDATE
+        public static bool UpdateUser(User user)
+        {
+            return ApodDAL.DB.Update<User>(user);
         }
     }
 }

@@ -56,16 +56,16 @@ export class MarsRoverComponent implements OnInit {
   constructor(private marsRoverService: MarsRoverService, private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
+    if (this.marsRoverType === 'fromFavoriteList') {
+      this.favoriteId = this.favoriteRover.id;
+    }
+    
     this.currentUserId = this.userService.getCurrentUserId();
 
     this.currentUserId.subscribe((userId: number) => {
       console.log(`Logging from Mars Rover Component: ${userId}`);
       this.userId = userId;
     })
-
-    if (this.marsRoverType === 'fromFavoriteList') {
-      this.favoriteId = this.favoriteRover.id;
-    }
   }
 
   AddFavoriteRover() {

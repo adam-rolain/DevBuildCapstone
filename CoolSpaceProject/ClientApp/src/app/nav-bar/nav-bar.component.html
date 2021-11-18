@@ -19,17 +19,22 @@
           <a class="nav-link" routerLink="/apodList" routerLinkActive="active">Browse APOD's</a>
         </li>
         <li class="nav-item">
-          <a *ngIf="userId > -1" class="nav-link" routerLink="/favoriteApodList" [queryParams]="{ isFavoriteList: true }" routerLinkActive="active">Favorite APODs</a>
-        </li>
-        <li class="nav-item">
-          <a *ngIf="userId > -1" class="nav-link" routerLink="/favoriteRoverList" [queryParams]="{ isFavoriteList: true }" routerLinkActive="active">Favorite Rovers</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" routerLink="/marsRoverList" routerLinkActive="active">Mars Rover</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/techTranser" routerLinkActive="active">Tech Transfer</a>
         </li>
+        <ng-container *ngIf="userId > 0">
+          <li class="nav-item">
+            <div class="nav-item dropdown" ngbDropdown>
+              <a class="nav-link dropdown-toggle" ngbDropdownToggle data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="bi bi-star-fill"></i> Favorites</a>
+              <div class="dropdown-menu" ngbDropdownMenu>
+                <a class="dropdown-item" ngbDropdownItem routerLink="/favoriteApodList" [queryParams]="{ isFavoriteList: true }" routerLinkActive="active">APODs</a>
+                <a class="dropdown-item" ngbDropdownItem routerLink="/favoriteRoverList" [queryParams]="{ isFavoriteList: true }" routerLinkActive="active">Mars Rover Photos</a>
+              </div>
+            </div>
+          </li>
+        </ng-container>
       </ul>
       <div class="nav-item dropdown loginIcon" ngbDropdown>
         <a class="nav-link dropdown-toggle loginIcon-dark" ngbDropdownToggle data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="bi bi-person-fill"></i></a>
