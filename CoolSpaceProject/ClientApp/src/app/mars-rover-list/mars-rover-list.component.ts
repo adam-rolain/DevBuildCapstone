@@ -50,5 +50,4 @@ export class MarsRoverListComponent implements OnInit {
       },
     );
   }
-  // Need to add something
 }

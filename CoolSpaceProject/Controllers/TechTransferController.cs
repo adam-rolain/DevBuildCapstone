@@ -18,5 +18,19 @@ namespace CoolSpaceProject.Controllers
         {
             return await TechTransferDAL.SearchPatents(search);
         }
+
+        // https://localhost:44304/api/TechTransfer/PreviousSearches
+        [HttpGet("/api/TechTransfer/PreviousSearches")]
+        public List<Search> GetPreviousSearches()
+        {
+            return TechTransferDAL.GetPreviousSearches();
+        }
+
+        // https://localhost:44304/api/TechTransfer/SaveSearch?search=engine
+        [HttpGet("/api/TechTransfer/SaveSearch")]
+        public bool SaveSearch(string search)
+        {
+            return TechTransferDAL.SaveSearch(search);
+        }
     }
 }
