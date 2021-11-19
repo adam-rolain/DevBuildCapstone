@@ -32,7 +32,5 @@ namespace CoolSpaceProject.Controllers
         {
             return TechTransferDAL.SaveSearch(search);
         }
-
-        // Had to add something
     }
 }
