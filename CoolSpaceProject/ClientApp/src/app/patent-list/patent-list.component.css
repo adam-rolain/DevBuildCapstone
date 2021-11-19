@@ -1,0 +1,19 @@
+.menu-width {
+    padding: 0.2em auto;
+    width: 48.05em;
+}
+
+search-border:hover {
+    cursor: pointer;
+}
+
+.search-border {
+    border-bottom: 1px solid #ced4da;
+}
+
+.bar-width {
+    max-width: 74.5em;
+    position: relative;
+    right: 2.8em;
+    bottom: 7.55em;
+}

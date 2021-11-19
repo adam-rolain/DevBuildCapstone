@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dapper;
+using Dapper.Contrib.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -20,11 +22,36 @@ namespace CoolSpaceProject.Models
             return client;
         }
 
+        // READ
         public static async Task<TechTransferResponse> SearchPatents(string search)
         {
             var response = await GetHttpClient().GetAsync($"/techtransfer/patent/?${search}&api_key=AhkPJXB4fyYZfBLWbVJBv5HxNDZVUUb5ceAaC88r");
             TechTransferResponse roverresponse = await response.Content.ReadAsAsync<TechTransferResponse>();
             return roverresponse;
+        }
+
+        public static List<Search> GetPreviousSearches()
+        {
+            return ApodDAL.DB.Query<Search>("SELECT * FROM searchHistory WHERE userId = @userId ORDER BY id DESC LIMIT 5", new { userId = UserDAL.CurrentUserId }).ToList();
+        }
+
+        // CREATE
+        public static bool SaveSearch(string search)
+        {
+            Search savedSearch = new Search()
+            {
+                searchString = search,
+                userId = UserDAL.CurrentUserId
+            };
+            long responseFromDB = ApodDAL.DB.Insert(savedSearch);
+            if (responseFromDB < 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
